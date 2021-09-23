@@ -57,10 +57,12 @@ function getSesionState() {
 
 function checkSesion(argumentloged, argumentlogin, argumentlogout) {
     var sesionState = getSesionState()
+    var loginName = getCookie("username")
 
     if (sesionState == "LogedIn") {
-        document.write("Loged in")
+        document.write("Loged in " + loginName)
         document.write(argumentloged)
+        document.write("<br><br><button onclick='deleteCookie("+'"login"'+", " + '"Jildam/index.php"' +")' formaction='index.php'>Cerrar Sesion</button>")
     } else if (sesionState == "NotLogedIn") {
         document.write("Not loged in")
         document.write(argumentlogout)

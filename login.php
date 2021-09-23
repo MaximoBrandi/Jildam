@@ -6,10 +6,9 @@
     <title>Jildam</title>
 </head>
 <body>
-    <form action="register.php" method="post">
-        Nombre: <input type="text" name="nombre"><br>
-        Contraseña: <input type="password" name="contrasena"><br>
+    <form id="seexo" action="login.php" method="post">
         Email: <input type="text" name="email"><br>
+        Contraseña: <input type="password" name="contrasena"><br>
         <input type="submit" value="Enviar">
         <br>
         <input type="submit" formaction="index.php" value="Atras">
@@ -64,18 +63,11 @@ function eliminar_acentos($cadena){
     return $cadena;
 }
 
-if (null !== htmlspecialchars($_POST["nombre"]) && null !== htmlspecialchars($_POST["contrasena"]) && null !== htmlspecialchars($_POST["email"])){
+if (null !== htmlspecialchars($_POST["contrasena"]) && null !== htmlspecialchars($_POST["email"])){
     $contrasenac = $_POST["contrasena"];
-    $nombrec = $_POST["nombre"];
     $emailc = $_POST["email"];
     $contrasena = strip_tags($contrasenac);
-    $usuario = strip_tags($nombrec);
     $emaila = strip_tags($emailc);
-    $email = eliminar_acentos($emaila);
-
-    $usuariocaps = strtolower($usuario);
-    $usuariospaces = str_replace(" ", "_", $usuariocaps);
-    $usuariodbcreate = eliminar_acentos($usuariospaces);
 }
 
 $hotsdb = "localhost";  
@@ -88,28 +80,22 @@ $tabla_db1 = "login";
 
 $mysqli = new mysqli($hotsdb, $usuariodb, $clavedb, $basededatos, 3306);
 
-$consulta = "SELECT email, usuario FROM $tabla_db1 WHERE email='$email' OR usuario='$usuario'";
+$consulta = "SELECT email, usuario FROM $tabla_db1 WHERE email='$emaila' AND contrasena='$contrasena'";
 $result = $mysqli->query($consulta);
 $row = $result->fetch_array(MYSQLI_ASSOC);
 
-if ($usuario == null && $email == null) {
-    echo "";
-}elseif($usuario == $row["usuario"] || $email == $row["email"]){
-    echo "Error, ya hay registrado una cuenta similar";
-}else{
-    $sql = "INSERT INTO $tabla_db1 (usuario, contrasena, email) VALUES ('$usuario', '$contrasena', '$email')";
-    if (mysqli_query($mysqli, $sql)) {
-        echo "Te has registrado correctamente";
-        echo "<br><form><input type='submit' formaction='inicio.php' value='Inicio'></form>";
-        $sql = "CREATE TABLE $usuariodbcreate (id int NOT NULL AUTO_INCREMENT,nombre varchar(255) NOT NULL,contrasena varchar(255),PRIMARY KEY (id));";
-        $mysqli->query($sql);
+if ($row["email"] !== null && $row["usuario"] !== null) {
+    $usernamecrud = $row["usuario"];
+    $usuariocaps = strtolower($usernamecrud);
+    $usuariospaces = str_replace(" ", "_", $usuariocaps);
+    $usuariodbcreate = eliminar_acentos($usuariospaces);
 
-        setcookie("login", "true", time() + (86400 * 30), "/");
-        setcookie("username", $usuario, time() + (86400 * 30), "/");
-        setcookie("dbusername", $usuariodbcreate, time() + (86400 * 30), "/");
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
+    setcookie("login", "true", time() + (86400 * 30), "/");
+    setcookie("username", $usernamecrud, time() + (86400 * 30), "/");
+    setcookie("dbusername", $usuariodbcreate, time() + (86400 * 30), "/");
+
+    echo "Has iniciado sesion con exito";
+    echo "<br><form><input type='submit' formaction='inicio.php' value='Inicio'></form>";
 }
 
 ?>

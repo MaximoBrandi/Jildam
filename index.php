@@ -12,7 +12,7 @@
             var logedArgument = "<br><input type='submit' formaction='inicio.php' value='Perfil'>"
             var loginArgument = "<br><input type='submit' formaction='login.php' value='Iniciar Sesion'>"
             var logoutArgument = "<br><input type='submit' formaction='register.php' value='Registrarse'>"
-
+            
             firstTime()
             checkSesion(logedArgument, loginArgument, logoutArgument)
         </script>

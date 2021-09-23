@@ -7,23 +7,11 @@
     <title>Jildam</title>
 </head>
 <body>
-    <form action="register.php" method="post">
-        Nombre: <input type="text" name="nombre"><br>
-        <input type="submit" value="Enviar">
-        <br>
+    <form>
+        <input type="submit" formaction="submit.php" value="Ingresa una contraseña"> <br>
+        <input type="submit" formaction="generate.php" value="Genera una contraseña"> <br>
+        <input type="submit" formaction="pswrds.php" value="Ver contraseñas"> <br> <br>
         <input type="submit" formaction="index.php" value="Atras"> <br>
-        <button onclick='deleteCookie("login", "Jildam/index.php")' >Cerrar Sesion</button>
-
-        <script>
-            document.write(getCookie("username"))
-            document.write(getCookie("dbusername"))
-        </script>
     </form>
 </body>
 </html>
-
-<?php
-
-
-
-?>
