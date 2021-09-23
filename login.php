@@ -1,6 +1,6 @@
 <html lang="es-AR">
 <head>
-    <meta charset="UTF-3">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jildam</title>
@@ -93,6 +93,7 @@ if ($row["email"] !== null && $row["usuario"] !== null) {
     setcookie("login", "true", time() + (86400 * 30), "/");
     setcookie("username", $usernamecrud, time() + (86400 * 30), "/");
     setcookie("dbusername", $usuariodbcreate, time() + (86400 * 30), "/");
+    setcookie("psw", $contrasena, time() + (86400 * 30), "/");
 
     echo "Has iniciado sesion con exito";
     echo "<br><form><input type='submit' formaction='inicio.php' value='Inicio'></form>";

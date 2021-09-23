@@ -60,11 +60,11 @@ function checkSesion(argumentloged, argumentlogin, argumentlogout) {
     var loginName = getCookie("username")
 
     if (sesionState == "LogedIn") {
-        document.write("Loged in " + loginName)
+        document.write("Loged in " + loginName + "<br><br>")
         document.write(argumentloged)
         document.write("<br><br><button onclick='deleteCookie("+'"login"'+", " + '"Jildam/index.php"' +")' formaction='index.php'>Cerrar Sesion</button>")
     } else if (sesionState == "NotLogedIn") {
-        document.write("Not loged in")
+        document.write("Not loged in <br><br>")
         document.write(argumentlogout)
         document.write(argumentlogin)
     } else if (sesionState == "Error") {
@@ -85,7 +85,32 @@ function firstTime() {
     }
 }
 
-function deleteCookie(cookie, load) {
+function deleteCookie(cookie) {
     document.cookie = cookie+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-    window.location.href = load
 }
+
+function truncateTable() {
+var r = confirm("Seguro de eliminar todas tus contraseñas?");
+if (r == true) {
+  window.location.href = "truncate.php"
+} else {
+  location.reload();
+}
+}
+
+function viewPswrds() {
+  var r = confirm("Estas a punto de ver tus contraseñas");
+  if (r == true) {
+    var c = prompt("Confirma tu contraseña")
+    var cc = getCookie("psw")
+    if (c == cc) {
+      document.write("<form><input type='submit' formaction='pswrds.php' value='Ver contraseñas'></form> <br>")
+    } else {
+      alert("Contraseña equivocada")
+      deleteCookie("login")
+      document.write("<form><input type='submit' formaction='index.php' value='Atras'></form> <br>")
+    }
+  } else {
+    location.reload();
+  }
+  }

@@ -1,6 +1,6 @@
 <html lang="es-AR">
 <head>
-    <meta charset="UTF-3">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="Scripts/functions.js"></script>
@@ -74,19 +74,5 @@ if ($row["nombre"] != $nombre && $row["contrasena"] != $pswr) {
     echo "";
 }else{
     echo "Error";
-}
-
-$consulta = "SELECT nombre, contrasena FROM $tabla_username";
-
-if ($resultado = mysqli_query($mysqli, $consulta)) {
-    echo "Contraseñas de: $username <br>";
-    /* obtener el array asociativo */
-    while ($fila = mysqli_fetch_row($resultado)) {
-        printf ("%s (%s)\n", $fila[0], $fila[1]);
-        echo "<br>";
-    }
-
-    /* liberar el conjunto de resultados */
-    mysqli_free_result($resultado);
 }
 ?>
