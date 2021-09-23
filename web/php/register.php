@@ -3,17 +3,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jildam</title>
+    <link rel="stylesheet" href="../../css/loginStyle.css">
+    <title>Register</title>
 </head>
-<body>
-    <form action="register.php" method="post">
-        Nombre: <input type="text" name="nombre"><br>
-        Contraseña: <input type="password" name="contrasena"><br>
-        Email: <input type="text" name="email"><br>
-        <input type="submit" value="Enviar">
-        <br>
-        <input type="submit" formaction="index.php" value="Atras">
-    </form>
+<body style="background: linear-gradient(#ff8000, #f44611);">
+  <section id="LogIn" style="height: 45em;">
+    <div id="LogIn_div">
+      <h2>Registrate</h2>
+      <form action="register.php" method="post">
+        <input type="text" name="nombre" placeholder="Ingrese Nombre" class="LogIn__boton" required><br>
+        <input type="email" name="email" placeholder="Ingrase E-Mail" class="LogIn__boton" required><br>
+        <input type="password" name="contrasena" placeholder="Ingrese Contraseña" class="LogIn__boton" required><br>
+        <input type="submit" value="Enviar" id="boton_repiola" style="background-color: #f85d09;">
+      </form>
+    </div>
+  </section>
 </body>
 </html>
 
@@ -95,12 +99,15 @@ $row = $result->fetch_array(MYSQLI_ASSOC);
 if ($usuario == null && $email == null) {
     echo "";
 }elseif($usuario == $row["usuario"] || $email == $row["email"]){
-    echo "Error, ya hay registrado una cuenta similar";
+    ?>
+    <script>alert("Error, ya hay registrado una cuenta similar");</script>
+    <?php
 }else{
     $sql = "INSERT INTO $tabla_db1 (usuario, contrasena, email) VALUES ('$usuario', '$contrasena', '$email')";
     if (mysqli_query($mysqli, $sql)) {
-        echo "Te has registrado correctamente";
-        echo "<br><form><input type='submit' formaction='inicio.php' value='Inicio'></form>";
+        ?>
+        <script>alert("Te has registrado correctamente");</script>
+        <?php
         $sql = "CREATE TABLE $usuariodbcreate (id int NOT NULL AUTO_INCREMENT,nombre varchar(255) NOT NULL,contrasena varchar(255),PRIMARY KEY (id));";
         $mysqli->query($sql);
 
