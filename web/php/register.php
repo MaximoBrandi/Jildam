@@ -6,22 +6,11 @@
     <link rel="stylesheet" href="../../css/loginStyle.css">
     <title>Register</title>
 </head>
-<<<<<<< HEAD
-<body>
-    <form action="jildam/web/php/register.php" method="post">
-        Nombre: <input type="text" name="nombre"><br>
-        Contraseña: <input type="password" name="contrasena"><br>
-        Email: <input type="text" name="email"><br>
-        <input type="submit" value="Enviar">
-        <br>
-        <input type="submit" formaction="jildam/index.php" value="Atras">
-    </form>
-=======
 <body style="background: linear-gradient(#ff8000, #f44611);">
   <section id="LogIn" style="height: 45em;">
     <div id="LogIn_div">
       <h2>Registrate</h2>
-      <form action="register.php" method="post">
+      <form action="jildam/web/php/register.php" method="post">
         <input type="text" name="nombre" placeholder="Ingrese Nombre" class="LogIn__boton" required><br>
         <input type="email" name="email" placeholder="Ingrase E-Mail" class="LogIn__boton" required><br>
         <input type="password" name="contrasena" placeholder="Ingrese Contraseña" class="LogIn__boton" required><br>
@@ -29,7 +18,6 @@
       </form>
     </div>
   </section>
->>>>>>> 306efb7cf639ba83b556ab1580043b63e2cc9223
 </body>
 </html>
 
@@ -117,14 +105,8 @@ if ($usuario == null && $email == null) {
 }else{
     $sql = "INSERT INTO $tabla_db1 (usuario, contrasena, email) VALUES ('$usuario', '$contrasena', '$email')";
     if (mysqli_query($mysqli, $sql)) {
-<<<<<<< HEAD
         echo "Te has registrado correctamente";
         echo "<br><form><input type='submit' formaction='jildam/web/php/inicio.php' value='Inicio'></form>";
-=======
-        ?>
-        <script>alert("Te has registrado correctamente");</script>
-        <?php
->>>>>>> 306efb7cf639ba83b556ab1580043b63e2cc9223
         $sql = "CREATE TABLE $usuariodbcreate (id int NOT NULL AUTO_INCREMENT,nombre varchar(255) NOT NULL,contrasena varchar(255),PRIMARY KEY (id));";
         $mysqli->query($sql);
 

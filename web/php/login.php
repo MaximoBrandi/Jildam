@@ -7,28 +7,17 @@
     <link rel="icon" href=""> <!-- icono web -->
     <title>LogIn</title>
 </head>
-<<<<<<< HEAD
-<body>
-    <form id="seexo" action="jildam/web/php/login.php" method="post">
-        Email: <input type="text" name="email"><br>
-        Contraseña: <input type="password" name="contrasena"><br>
-        <input type="submit" value="Enviar">
-        <br>
-        <input type="submit" formaction="jildam/web/php/login.php" value="Atras">
-    </form>
-=======
 <body style="background: linear-gradient(#3e5f8a, rgb(81, 84, 119));">
   <section id="LogIn" style="height: 40em;">
     <div id="LogIn_div">
       <h2>Loguearte</h2>
-      <form action="login.php" method="post">
+      <form action="jildam/web/php/login.php" method="post">
         <input type="email" name="email" placeholder="Ingrase E-Mail" class="LogIn__boton" required><br>
         <input type="password" name="contrasena" placeholder="Ingrese Contraseña" class="LogIn__boton" required><br>
         <input type="submit" value="Enviar" id="boton_repiola" style="background-color: #3480e2;">
       </form>
     </div>
   </section>
->>>>>>> 306efb7cf639ba83b556ab1580043b63e2cc9223
 </body>
 </html>
 
@@ -111,14 +100,8 @@ if ($row["email"] !== null && $row["usuario"] !== null) {
     setcookie("dbusername", $usuariodbcreate, time() + (86400 * 30), "/");
     setcookie("psw", $contrasena, time() + (86400 * 30), "/");
 
-<<<<<<< HEAD
     echo "Has iniciado sesion con exito";
     echo "<br><form><input type='submit' formaction='jildam/web/php/inicio.php' value='Inicio'></form>";
-=======
-    ?>
-    <script>alert("Has iniciado sesion con exito");</script>
-    <?php
->>>>>>> 306efb7cf639ba83b556ab1580043b63e2cc9223
 }
 
 ?>
