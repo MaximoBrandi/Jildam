@@ -35,10 +35,10 @@ if ($resultado = mysqli_query($mysqli, $consulta)) {
         $mysqli->query($sql);
     
         echo "Contraseñas eliminadas correctamente";
-        echo "<br><form><input type='submit' formaction='pswrds.php' value='Atras'></form>";
+        echo "<br><form><input type='submit' formaction='jildam/web/php/pswrds.php' value='Atras'></form>";
     } else{
         echo "Error, no hay contraseñas";
-        echo "<br><form><input type='submit' formaction='pswrds.php' value='Atras'></form>";
+        echo "<br><form><input type='submit' formaction='jildam/web/php/pswrds.php' value='Atras'></form>";
     }
 }
 

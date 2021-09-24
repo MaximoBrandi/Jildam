@@ -7,12 +7,12 @@
     <title>Jildam</title>
 </head>
 <body>
-    <form action="submit.php" method="post">
+    <form action="jildam/web/php/submit.php" method="post">
         Nombre: <input type="text" name="nombre"><br>
         Ingresa una contraseña: <input type="password" name="contrasenea"> <br>
         <input type="submit" value="Enviar">
         <br>
-        <input type="submit" formaction="inicio.php" value="Atras"> <br>
+        <input type="submit" formaction="jildam/web/php/inicio.php" value="Atras"> <br>
     </form>
 </body>
 </html>
