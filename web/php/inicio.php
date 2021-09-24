@@ -8,10 +8,10 @@
 </head>
 <body>
     <form>
-        <input type="submit" formaction="submit.php" value="Ingresa una contraseña"> <br>
-        <input type="submit" formaction="generate.php" value="Genera una contraseña"> <br>
+        <input type="submit" formaction="jildam/web/php/submit.php" value="Ingresa una contraseña"> <br>
+        <input type="submit" formaction="jildam/web/php/generate.php" value="Genera una contraseña"> <br>
         <button onclick="viewPswrds()">Ver contraseñas</button> <br><br>
-        <input type="submit" formaction="index.php" value="Atras"> <br>
+        <input type="submit" formaction="jildam/index.php" value="Atras"> <br>
     </form>
 </body>
 </html>

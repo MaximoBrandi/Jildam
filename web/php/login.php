@@ -6,12 +6,12 @@
     <title>Jildam</title>
 </head>
 <body>
-    <form id="seexo" action="login.php" method="post">
+    <form id="seexo" action="jildam/web/php/login.php" method="post">
         Email: <input type="text" name="email"><br>
         Contraseña: <input type="password" name="contrasena"><br>
         <input type="submit" value="Enviar">
         <br>
-        <input type="submit" formaction="index.php" value="Atras">
+        <input type="submit" formaction="jildam/web/php/login.php" value="Atras">
     </form>
 </body>
 </html>
@@ -96,7 +96,7 @@ if ($row["email"] !== null && $row["usuario"] !== null) {
     setcookie("psw", $contrasena, time() + (86400 * 30), "/");
 
     echo "Has iniciado sesion con exito";
-    echo "<br><form><input type='submit' formaction='inicio.php' value='Inicio'></form>";
+    echo "<br><form><input type='submit' formaction='jildam/web/php/inicio.php' value='Inicio'></form>";
 }
 
 ?>

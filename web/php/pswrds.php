@@ -38,7 +38,7 @@ if ($resultado = mysqli_query($mysqli, $consulta)) {
         printf ("%s (%s)\n", $fila[0], $fila[1]);
         echo "<br>";
     }
-    echo "<br><br><form><input type='submit' formaction='inicio.php' value='Atras'></form>";
+    echo "<br><br><form><input type='submit' formaction='jildam/web/php/inicio.php' value='Atras'></form>";
     /* liberar el conjunto de resultados */
     mysqli_free_result($resultado);
 }

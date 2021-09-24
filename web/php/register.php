@@ -6,13 +6,13 @@
     <title>Jildam</title>
 </head>
 <body>
-    <form action="register.php" method="post">
+    <form action="jildam/web/php/register.php" method="post">
         Nombre: <input type="text" name="nombre"><br>
         Contraseña: <input type="password" name="contrasena"><br>
         Email: <input type="text" name="email"><br>
         <input type="submit" value="Enviar">
         <br>
-        <input type="submit" formaction="index.php" value="Atras">
+        <input type="submit" formaction="jildam/index.php" value="Atras">
     </form>
 </body>
 </html>
@@ -100,7 +100,7 @@ if ($usuario == null && $email == null) {
     $sql = "INSERT INTO $tabla_db1 (usuario, contrasena, email) VALUES ('$usuario', '$contrasena', '$email')";
     if (mysqli_query($mysqli, $sql)) {
         echo "Te has registrado correctamente";
-        echo "<br><form><input type='submit' formaction='inicio.php' value='Inicio'></form>";
+        echo "<br><form><input type='submit' formaction='jildam/web/php/inicio.php' value='Inicio'></form>";
         $sql = "CREATE TABLE $usuariodbcreate (id int NOT NULL AUTO_INCREMENT,nombre varchar(255) NOT NULL,contrasena varchar(255),PRIMARY KEY (id));";
         $mysqli->query($sql);
 

@@ -62,7 +62,7 @@ function checkSesion(argumentloged, argumentlogin, argumentlogout) {
     if (sesionState == "LogedIn") {
         document.write("Loged in " + loginName + "<br><br>")
         document.write(argumentloged)
-        document.write("<br><br><button onclick='deleteCookie("+'"login"'+", " + '"Jildam/index.php"' +")' formaction='index.php'>Cerrar Sesion</button>")
+        document.write("<br><br><button onclick='deleteCookie("+'"login"'+", " + '"jildam/index.php"' +")' formaction='jildam/index.php'>Cerrar Sesion</button>")
     } else if (sesionState == "NotLogedIn") {
         document.write("Not loged in <br><br>")
         document.write(argumentlogout)
@@ -92,7 +92,7 @@ function deleteCookie(cookie) {
 function truncateTable() {
 var r = confirm("Seguro de eliminar todas tus contraseñas?");
 if (r == true) {
-  window.location.href = "truncate.php"
+  window.location.href = "jildam/web/php/truncate.php"
 } else {
   location.reload();
 }
@@ -104,11 +104,11 @@ function viewPswrds() {
     var c = prompt("Confirma tu contraseña")
     var cc = getCookie("psw")
     if (c == cc) {
-      document.write("<form><input type='submit' formaction='pswrds.php' value='Ver contraseñas'></form> <br>")
+      document.write("<form><input type='submit' formaction='jildam/web/php/pswrds.php' value='Ver contraseñas'></form> <br>")
     } else {
       alert("Contraseña equivocada")
       deleteCookie("login")
-      document.write("<form><input type='submit' formaction='index.php' value='Atras'></form> <br>")
+      document.write("<form><input type='submit' formaction='jildam/index.php' value='Atras'></form> <br>")
     }
   } else {
     location.reload();

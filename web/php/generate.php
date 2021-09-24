@@ -7,13 +7,13 @@
     <title>Jildam</title>
 </head>
 <body>
-    <form action="generate.php" method="post">
+    <form action="jildam/web/php/generate.php" method="post">
         Nombre: <input type="text" name="nombre"><br>
         Contraseña de 12 digitos: <input type="radio" name="psw_type" value="12"> <br>
         Contraseña de 16 digitos: <input type="radio" name="psw_type" value="16"> <br>
         <input type="submit" value="Enviar">
         <br>
-        <input type="submit" formaction="inicio.php" value="Atras"> <br>
+        <input type="submit" formaction="jildam/web/php/inicio.php" value="Atras"> <br>
     </form>
 </body>
 </html>
