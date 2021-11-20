@@ -55,7 +55,7 @@ if (isset($_POST["contrasena"]) && isset($_POST["email"])){
 }
 
 if (isset($emaila) && isset($contrasena)) {
-  $consulta = "SELECT  id, email, username, deleted FROM users WHERE email='$emaila' AND password='$contrasena'";
+  $consulta = "SELECT  id, email, username, deleted FROM users WHERE email='$emaila' AND password='" . md5($contrasena) . "'";
   $result = consulta($conn, $consulta);
   $row = mysqli_fetch_assoc($result);
 }

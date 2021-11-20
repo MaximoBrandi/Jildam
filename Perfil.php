@@ -43,10 +43,10 @@
         $pass = mysqli_fetch_assoc($result);
 
         if (isset($_POST["actu"]) && isset($_POST["nue1"]) && isset($_POST["nue2"])) {
-            $passactu = $_POST["actu"];
+            $passactu = md5($_POST["actu"]);
             if ($pass["password"] == $passactu) {
                 if ($_POST["nue1"] == $_POST["nue2"]) {
-                    $newpass = $_POST["nue1"];
+                    $newpass = md5($_POST["nue1"]) ;
                     $sql = "UPDATE users SET password = '$newpass' WHERE id = " . $_COOKIE["login"];
                     consulta($conn, $sql);
                 }
