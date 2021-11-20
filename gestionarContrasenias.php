@@ -28,7 +28,7 @@
         <h2>Gestionar contraseñas</h2>
         <hr><br><br>
         <center>
-        <table class="table-accounts">
+        <table class="table-accounts" id="table-accounts">
             <thead id="table-head">
                 <tr style="border-top: none;">
                     <th align="center" style="border-top-left-radius: inherit;">Página</th>
@@ -65,7 +65,7 @@
                     }
                 ?>
                 <tr id="filaAddPass" style="border-bottom-left-radius: inherit;border-bottom-right-radius: inherit;">
-                    <td align="center" colspan="5" id="Agregar"><button onclick="alertAddPass()" class="btn-addPass">+ Añadir</button></td>
+                    <td align="center" colspan="6" id="Agregar"><button onclick="alertAddPass()" class="btn-addPass">+ Añadir</button></td>
                 </tr>
             </tbody>
         </table>
