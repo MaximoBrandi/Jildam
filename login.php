@@ -21,7 +21,7 @@ include "web/php/menu.php";
       <form action="web/php/login.php" method="post">
         <input type="email" name="email" placeholder="E-Mail..." class="login-input form-control" required><br>
         <div class="d-flex">
-          <input type="password" name="contrasena" placeholder="Contraseña..." class="login-input form-control" id="input-passGenerada" required style="margin-left: 2em;">
+          <input type="password" name="contrasena" pattern="[A-Za-z0-9_-]{1,50}" placeholder="Contraseña..." class="login-input form-control" id="input-passGenerada" required style="margin-left: 2em;">
           <button type="button" onclick="showPasswordInput()" class="btn-verPassLogin" title="Mostrar"></button>
         </div>
         <a href="register.php">¿No tienes una cuenta? ¡Regístrate!</a>

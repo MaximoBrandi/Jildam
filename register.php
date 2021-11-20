@@ -34,11 +34,11 @@ include "web/php/menu.php";
         <input type="text" name="nombre" placeholder="Usuario" class="login-input form-control" required><br>
         <input type="email" name="email" placeholder="Correo" class="login-input form-control" required><br>
         <div class="d-flex">
-          <input type="password" name="contrasena" placeholder="Contraseña" class="login-input form-control" id="pswrd" onkeyup='confirmPswrd()' required style="margin-left: 2em;">
+          <input type="password" pattern="[A-Za-z0-9_-]{1,50}" name="contrasena" placeholder="Contraseña" class="login-input form-control" id="pswrd" onkeyup='confirmPswrd()' required style="margin-left: 2em;">
           <button type="button" class="btn-verPassLogin" title="Mostrar"></button>
         </div>
         <div class="d-flex">
-          <input type="password" placeholder="Confirmar contraseña" class="login-input form-control" id="pswrd_confirm" onkeyup='confirmPswrd()' required style="margin-left: 2em;">
+          <input type="password" pattern="[A-Za-z0-9_-]{1,50}" placeholder="Confirmar contraseña" class="login-input form-control" id="pswrd_confirm" onkeyup='confirmPswrd()' required style="margin-left: 2em;">
           <button type="button" class="btn-verPassLogin" title="Mostrar"></button>
         </div>
         <span id='message'></span>

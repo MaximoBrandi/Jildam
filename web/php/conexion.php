@@ -5,6 +5,7 @@
     define('DB_NAME','jildam');
 
     $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+    $conn->set_charset('utf8');
 
     if(!$conn){
         exit("Error en conexion: " . mysqli_connect_error());

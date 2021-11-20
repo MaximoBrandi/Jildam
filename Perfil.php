@@ -31,9 +31,9 @@
             $surName = strip_tags($sub_surName);
             $Bio = strip_tags($sub_Bio);
     
-            $consulta = "UPDATE `profiles` SET `name`='" . $Name . "',`surname`='" . $surName . "',`biography`='" . $Bio . "'WHERE `user_id` = " . $_COOKIE["login"];
+            $consulta = "UPDATE `profiles` SET `name`='" . $conn->real_escape_string($Name) . "',`surname`='" . $conn->real_escape_string($surName) . "',`biography`='" . $conn->real_escape_string($Bio) . "'WHERE `user_id` = " . $_COOKIE["login"];
             $result = consulta($conn, $consulta);
-            $consulta = "UPDATE `users` SET `username`='" . $User . "' WHERE `id` = " . $_COOKIE["login"];
+            $consulta = "UPDATE `users` SET `username`='" . $conn->real_escape_string($User) . "' WHERE `id` = " . $_COOKIE["login"];
             $result = consulta($conn, $consulta);
             header("Location: Perfil.php");
         }
@@ -47,7 +47,7 @@
             if ($pass["password"] == $passactu) {
                 if ($_POST["nue1"] == $_POST["nue2"]) {
                     $newpass = md5($_POST["nue1"]) ;
-                    $sql = "UPDATE users SET password = '$newpass' WHERE id = " . $_COOKIE["login"];
+                    $sql = "UPDATE users SET password = '" . $newpass . "' WHERE id = " . $_COOKIE["login"];
                     consulta($conn, $sql);
                 }
             }
@@ -56,7 +56,7 @@
         if (isset($_POST["webIMG"])) {
             $image = $_POST["webIMG"];
 
-            $sql = "UPDATE profiles SET pfp = '$image' WHERE user_id = " . $_COOKIE["login"];
+            $sql = "UPDATE profiles SET pfp = '$conn->real_escape_string($image)' WHERE user_id = " . $_COOKIE["login"];
             consulta($conn, $sql);
         }else if($row["pfp"] !== ""){
             $image = $row["pfp"];

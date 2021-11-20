@@ -16,7 +16,7 @@ if (isset($_POST["nombre"]) && isset($_POST["contrasena"]) && isset($_POST["emai
   
     if(isset($usuario) && isset($email)){
         if ($row["email"] != $email || $row["deleted"] !== null ) {
-            $sql = "INSERT INTO users (email, username , password) VALUES ( '$email', '$usuario', '" . md5($contrasena) . "')";
+            $sql = "INSERT INTO users (email, username , password) VALUES ( '" . $conn->real_escape_string($email) . "', '" . $conn->real_escape_string($usuario) . "', '" . $conn->real_escape_string(md5($contrasena)) . "')";
             $res = consulta($conn, $sql);
       
             
