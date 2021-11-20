@@ -921,6 +921,9 @@ table th, td{
     html {
         font-size: 12px;
     }
+    #table-accounts{
+        font-size: 12px;
+    }
     #logSec{
         display: flex;
         align-items: center;
