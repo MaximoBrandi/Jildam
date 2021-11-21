@@ -750,6 +750,9 @@ table th, td{
     width: none !important;
     height: none !important;
 }
+#mobileButton{
+    display: none;
+}
 
 /* ALERTAS */
 .vex-content{
@@ -977,6 +980,12 @@ table th, td{
         flex-direction: column;
         width: 100%;
         height: 100%;
+    }
+    .desktopButtons, #ver{
+        display: none;
+    }
+    #mobileButton{
+        display: inherit;
     }
 }
 @media (max-width: 500px) {
