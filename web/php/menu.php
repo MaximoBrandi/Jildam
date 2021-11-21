@@ -1,6 +1,6 @@
 <link rel="icon" href="../../recursos/img/jildam_icon.svg">
 <script src="Scripts/bootstrap.bundle.min.js"></script>
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light position-fixed w-100">
   <div class="container-fluid">
     <a class="navbar-brand align-middle d-flex logo-container">
             <button onclick="window.location.href = 'index.php'" formaction='index.php' class="btn-inicio"

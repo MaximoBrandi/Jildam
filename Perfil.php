@@ -46,8 +46,10 @@
             $passactu = md5($_POST["actu"]);
             if ($pass["password"] == $passactu) {
                 if ($_POST["nue1"] == $_POST["nue2"]) {
-                    $newpass = md5($_POST["nue1"]) ;
-                    $sql = "UPDATE users SET password = '" . $newpass . "' WHERE id = " . $_COOKIE["login"];
+                    $newpass = $_POST["nue1"];
+                    $sql = "UPDATE users SET password = '" . md5($newpass) . "' WHERE id = " . $_COOKIE["login"];
+                    consulta($conn, $sql);
+                    $sql = "UPDATE accounts SET password = '" . $newpass . "' WHERE user_id = " . $_COOKIE["login"] . " AND web = 'Jildam'";
                     consulta($conn, $sql);
                 }
             }

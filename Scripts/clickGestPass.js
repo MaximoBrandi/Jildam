@@ -38,15 +38,16 @@ function seeRegisterPasswords(){
 }
 
 /* Para generar una contraseña al momento de registrarse */
-document.getElementById('generateRegisterPassword').addEventListener('click',()=>{
+function generatePassMultipleInputs(){
     let inputs = document.querySelectorAll(".inputPasswordRegister");
-    let caracteresRandomPass = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","U","V","W","X","Y","Z","[","]",",",".","|",1,2,3,4,5,6,7,8,9,0,"@","!","$","%","^","&","*","(",")",];
+    let caracteresRandomPass = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","U","V","W","X","Y","Z",1,2,3,4,5,6,7,8,9,0,"-","_"];
     let passGenerada = '';
     for (let i = 0; i < 20; i++) {
         let random = Math.floor(Math.random() * caracteresRandomPass.length);
         passGenerada += caracteresRandomPass[random];
       }
-    inputs[0].value = passGenerada;
-    inputs[1].value = passGenerada;
-    document.getElementById('boton_repiola').removeAttribute('disabled');
-});
+    inputs.forEach(e => {
+        e.value = passGenerada;
+    });
+    if(location.href.includes('register.php')) document.getElementById('boton_repiola').removeAttribute('disabled');
+}

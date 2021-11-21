@@ -11,19 +11,19 @@ include "web/php/menu.php";
     <link rel="stylesheet" href="css/globalStyles.css">
     <title>Jildam</title>
 </head>
-<body onload='alertLogin("register")' >
+<body onload='alertLogin("register")' style="padding-bottom:3em;">
   <section id="LogIn" style="height: auto; padding-bottom: 1em;">
     <div id='errorAlert' class='vanish'></div>
     <div id="LogIn_div" style="margin-top: 1.75em;">
       <h2>Regístrate</h2>
       <form action="web/php/register.php" method="post">
-        <input type="text" name="nombre" placeholder="Usuario" class="login-input form-control" autocomplete="off" required><br>
-        <input type="email" name="email" placeholder="Correo" class="login-input form-control" autocomplete="off" required><br>
-        <input type="password" pattern="[A-Za-z0-9_-]{1,50}" name="contrasena" placeholder="Contraseña" class="login-input form-control inputPasswordRegister" id="pswrd" onkeyup='confirmPswrd()' required>
-        <input type="password" pattern="[A-Za-z0-9_-]{1,50}" placeholder="Confirmar contraseña" class="login-input form-control inputPasswordRegister" id="pswrd_confirm" onkeyup='confirmPswrd()' required>
-        <div class="d-flex justify-content-around mt-2">
-          <input type="checkbox" id="seePasswordInputs" class="btn-check align-middle" onclick="seeRegisterPasswords()" style="width: 40%;"><label class="btn btn-outline-primary" for="seePasswordInputs">Ver contraseñas</label>
-          <button type="button" id="generateRegisterPassword" class="btn btn-primary" style="width: 40%;">Genera una contraseña</button>
+      <input type="email" name="email" placeholder="Correo electrónico..." class="login-input form-control" autocomplete="off" required>
+        <input type="text" name="nombre" pattern="[A-Za-z0-9_-]{1,50}" placeholder="Nombre de usuario..." class="login-input form-control" autocomplete="off" required>
+        <input type="password" pattern="[A-Za-z0-9_-]{1,50}" name="contrasena" placeholder="Contraseña..." class="login-input form-control inputPasswordRegister" id="pswrd" onkeyup='confirmPswrd()' required>
+        <input type="password" pattern="[A-Za-z0-9_-]{1,50}" placeholder="Confirmar contraseña..." class="login-input form-control inputPasswordRegister" id="pswrd_confirm" onkeyup='confirmPswrd()' required>
+        <div class="d-flex justify-content-around align-items-center mt-2">
+          <input type="checkbox" id="seePasswordInputs" class="btn-check align-middle" onclick="seeRegisterPasswords()" style="width: 40%;"><label class="btn btn-outline-primary pt-1" for="seePasswordInputs">Ver contraseñas</label>
+          <button type="button" onclick="generatePassMultipleInputs()" class="btn btn-primary" style="width: 40%;">Genera una contraseña</button>
         </div>
         <span id='message'></span>
         <a href="login.php">¿Tienes una cuenta? ¡Inicia sesión!</a>

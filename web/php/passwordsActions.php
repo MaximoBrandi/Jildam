@@ -3,13 +3,16 @@
     /* Agregar contraseñas */
     if (isset($_POST["userADD"]) && isset($_POST["passADD"])){
 
-        if(isset($_POST["webADD"])) $sub_web = $_POST["webADD"];
+        if(isset($_POST["webADD"])){
+            if($_POST["webADD"] !== 'Jildam') $sub_web = strip_tags($_POST["webADD"]);
+            else $sub_web = "---";
+        }
         else $sub_web = "---";
 
         $sub_user = $_POST["userADD"];
         $sub_pass = $_POST["passADD"];
         
-        $web = strip_tags($sub_web);
+        $web = $sub_web;
         $user = strip_tags($sub_user);
         $pass = strip_tags($sub_pass);
 
@@ -44,7 +47,7 @@
         $res = consulta($conn, $sql);
         $userPassword = mysqli_fetch_assoc($res);
         if(md5($delAccountsConfirm) == $userPassword['password']){
-            $consulta = "UPDATE `accounts` SET `deleted`=NOW() WHERE `user_id` = " . $id;
+            $consulta = "UPDATE `accounts` SET `deleted`=NOW() WHERE `user_id` = " . $id . " AND web != 'Jildam'";
             $result = consulta($conn, $consulta);
             $delAccountsRes = 'true';
         }

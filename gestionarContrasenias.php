@@ -60,24 +60,24 @@
                         <button id="ver" class="btn-showPass" class="btn-opcion" onclick="clickedView('pass<?php echo $fila['id'];?>')" title="Mostrar"></button>
                     </td>
                     <td class="opciones desktopButtons" align="center">
-                        <button type="button" onclick="alertDeletePass(<?php echo $fila['id'] ?>)" class="btn-opcion btn-delPass" title="Eliminar"></button>
+                        <button type="button" onclick="<?php if($fila['web'] === 'Jildam'){echo "alertify.notify('No puedes eliminar tu contraseña de Jildam', 'error', 5, function(){});";}else{ ?> alertDeletePass(<?php echo $fila['id'] ?>) <?php } ?>" class="btn-opcion btn-delPass" title="Eliminar"></button>
                     </td>
                     <td class="opciones desktopButtons" align="center">
-                        <button class="btn-opcion btn-editPass" onclick="alertEditPass('<?php echo $fila['id']; ?>', '<?php echo $fila['web']; ?>', '<?php echo $fila['username']; ?>', '<?php echo $fila['password']; ?>')" title="Editar"></button>
+                        <button class="btn-opcion btn-editPass" onclick="<?php if($fila['web'] === 'Jildam'){echo "alertify.notify('Para editar tu contraseña de Jildam, ve a Perfil - Privacidad y Seguridad.', 'custom', 5, function(){});";}else{ ?> alertEditPass('<?php echo $fila['id']; ?>', '<?php echo $fila['web']; ?>', '<?php echo $fila['username']; ?>', '<?php echo $fila['password']; ?>') <?php } ?>" title="Editar"></button>
                     </td>
                     <td class="opciones desktopButtons" align="center">
                             <button class="btn-opcion btn-copyPass" onclick="copyPassword('pass<?php echo $fila['id'] ?>')"></button>
                     </td>
                     <td id="mobileButton">
-                        <div class="btn-group">
+                        <div class="btn-group mt-3">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 Opciones
                             </button>
                             <ul class="dropdown-menu">
                                 <li><div class="dropdown-item" onclick="clickedView('pass<?php echo $fila['id'];?>')">Ver</div></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><div class="dropdown-item" onclick="alertDeletePass(<?php echo $fila['id'] ?>)">Eliminar</div></li>
-                                <li><div class="dropdown-item" onclick="alertEditPass('<?php echo $fila['id']; ?>', '<?php echo $fila['web']; ?>', '<?php echo $fila['username']; ?>', '<?php echo $fila['password']; ?>')">Editar</div></li>
+                                <li><div class="dropdown-item" onclick="<?php if($fila['web'] === 'Jildam'){echo "alertify.notify('No puedes eliminar tu contraseña de Jildam', 'error', 5, function(){});";}else{ ?> alertDeletePass(<?php echo $fila['id'] ?>) <?php } ?>">Eliminar</div></li>
+                                <li><div class="dropdown-item" onclick="<?php if($fila['web'] === 'Jildam'){echo "alertify.notify('Para editar tu contraseña de Jildam, ve a Perfil - Privacidad y Seguridad.', 'custom', 5, function(){});";}else{ ?> alertEditPass('<?php echo $fila['id']; ?>', '<?php echo $fila['web']; ?>', '<?php echo $fila['username']; ?>', '<?php echo $fila['password']; ?>') <?php } ?>">Editar</div></li>
                                 <li><div class="dropdown-item" onclick="copyPassword('pass<?php echo $fila['id'] ?>')">Copiar</div></li>
                             </ul>
                         </div>
