@@ -1,4 +1,4 @@
-<?php
+﻿<?php
     include "web/php/menu.php";
     require_once "web/php/conexion.php";
     
@@ -56,7 +56,7 @@
         if (isset($_POST["webIMG"])) {
             $image = $_POST["webIMG"];
 
-            $sql = "UPDATE profiles SET pfp = '$conn->real_escape_string($image)' WHERE user_id = " . $_COOKIE["login"];
+            $sql = "UPDATE profiles SET pfp = '$image' WHERE user_id = " . $_COOKIE["login"];
             consulta($conn, $sql);
         }else if($row["pfp"] !== ""){
             $image = $row["pfp"];
