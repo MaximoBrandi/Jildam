@@ -13,7 +13,7 @@
         $user = strip_tags($sub_user);
         $pass = strip_tags($sub_pass);
 
-        $consulta = "INSERT INTO `accounts`(`id`, `user_id`, `web`, `username`, `password`) VALUES ('null','" . $_COOKIE["login"] . "','" . $web . "','" . $user . "','" . $pass . "')";
+        $consulta = "INSERT INTO `accounts` VALUES (null,'" . $_COOKIE["login"] . "','" . $web . "','" . $user . "','" . $pass . "', null)";
         $result = consulta($conn, $consulta);
     }
     /* Editar contraseñas */

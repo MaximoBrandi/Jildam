@@ -1,3 +1,4 @@
+<link rel="icon" href="../../recursos/img/jildam_icon.svg">
 <script src="Scripts/bootstrap.bundle.min.js"></script>
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">

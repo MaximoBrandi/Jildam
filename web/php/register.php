@@ -15,20 +15,14 @@ if (isset($_POST["nombre"]) && isset($_POST["contrasena"]) && isset($_POST["emai
   
     
     if(isset($usuario) && isset($email)){
-<<<<<<< HEAD
-        if ($row["email"] != $email || $row["deleted"] !== null ) {
-            $sql = "INSERT INTO users (email, username , password) VALUES ( '" . $conn->real_escape_string($email) . "', '" . $conn->real_escape_string($usuario) . "', '" . $conn->real_escape_string(md5($contrasena)) . "')";
-=======
-
         if (($row["email"] != $email || $row["deleted"] !== null) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $sql = "INSERT INTO users (email, username , password) VALUES ( '$email', '$usuario', '". md5($contrasena) ."')";
->>>>>>> versionFinalBeta
+            $sql = "INSERT INTO users (email, username , password) VALUES ( '" . $conn->real_escape_string($email) . "', '" . $conn->real_escape_string($usuario) . "', '" . $conn->real_escape_string(md5($contrasena)) . "')";
             $res = consulta($conn, $sql);
             
             $sql = "SELECT MAX(`id`) FROM `users`";
             $res = consulta($conn, $sql);
             $row = mysqli_fetch_assoc($res);
-            $consulta = "INSERT INTO `profiles`(`user_id`) VALUES ('" . $row["MAX(`id`)"] . "')";
+            $consulta = "INSERT INTO `profiles` VALUES (null, '" . $row["MAX(`id`)"] . "', '', '', '', '');"
             $result = consulta($conn, $consulta);
             setcookie("login", $row["MAX(`id`)"], time() + (86400 * 30), "/");
             $sql = "INSERT INTO accounts (id, user_id, web, username, password) VALUES ('null','" . $_COOKIE["login"]+1 . "', 'Jildam', '".$usuario."', '".$contrasena."')";
