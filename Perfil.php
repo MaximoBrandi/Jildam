@@ -44,10 +44,10 @@
 
         if (isset($_POST["actu"]) && isset($_POST["nue1"]) && isset($_POST["nue2"])) {
             $passactu = $_POST["actu"];
-            if ($pass["password"] == $passactu) {
+            if ($pass["password"] == md5($passactu)) {
                 if ($_POST["nue1"] == $_POST["nue2"]) {
                     $newpass = $_POST["nue1"];
-                    $sql = "UPDATE users SET password = '$newpass' WHERE id = " . $_COOKIE["login"];
+                    $sql = "UPDATE users SET password = '". md5($newpass) ."' WHERE id = " . $_COOKIE["login"];
                     consulta($conn, $sql);
                 }
             }
@@ -83,7 +83,6 @@
     <link rel="stylesheet" href="css/libraries/vex.css">
     <link rel="stylesheet" href="css/libraries/vex-theme-default.css">
     <link rel="stylesheet" href="css/globalStyles.css">
-    <script src="Scripts/theme.js"></script>
     <script src="Scripts/index.js"></script>
     <script src="Scripts/functions.js"></script>
     <script src="Scripts/libraries/vex.js"></script>

@@ -129,6 +129,7 @@ function alertLogin(ws) {
       document.getElementById("errorAlert").classList.remove('vanish');
       document.getElementById("errorAlert").innerHTML = "Los datos ingresados son incorrectos";
       document.getElementById("tituloLogIn").style = "";
+      return;
     }
     if (login == "LogedIn") {
       location.href = "inicio.php";
@@ -139,8 +140,9 @@ function alertLogin(ws) {
     var login = getSesionState()
     if (cookie == "true") {
       document.getElementById("errorAlert").classList.remove('vanish');
-      document.getElementById("errorAlert").innerHTML = "Los datos ingresados son incorrectos";
+      document.getElementById("errorAlert").innerHTML = "Los datos brindados no son válidos";
       document.getElementById("tituloLogIn").style = "";
+      return;
     }
     if (login == "LogedIn") {
       location.href = "inicio.php";
@@ -168,23 +170,33 @@ function closeSesion() {
 
 function confirmPswrd(write) {
   if (write != "no") {
+    if(document.getElementById('pswrd').value == '' && document.getElementById('pswrd_confirm').value == ''){
+      document.getElementById('message').innerHTML = '';
+      document.getElementById('boton_repiola').setAttribute('disabled','true');
+      return "false";
+    }
     if (document.getElementById('pswrd').value ==
       document.getElementById('pswrd_confirm').value) {
       document.getElementById('message').style.color = 'green';
       document.getElementById('message').innerHTML = '¡Todo en orden!';
+      document.getElementById('boton_repiola').removeAttribute('disabled','false');
       return "true";
-    } else if (document.getElementById('pswrd').value != null && document.getElementById('pswrd_confirm').value != null) {
+    } 
+    else if (document.getElementById('pswrd').value != null && document.getElementById('pswrd_confirm').value != null && document.getElementById('pswrd').value != document.getElementById('pswrd_confirm').value) {
       document.getElementById('message').style.color = 'red';
       document.getElementById('message').innerHTML = 'Las contraseñas no coinciden';
+      document.getElementById('boton_repiola').setAttribute('disabled','true');
       return "false";
     }
-  }else if(write == "no"){
+  }
+  else if(write == "no"){
     if (document.getElementById('pswrd').value ==
-    document.getElementById('pswrd_confirm').value) {
-    return "true";
-  } else if(document.getElementById('pswrd').value != null && document.getElementById('pswrd_confirm').value != null){
-    return "false";
+      document.getElementById('pswrd_confirm').value) {
+      return "true";
   } 
+  else if(document.getElementById('pswrd').value != null && document.getElementById('pswrd_confirm').value != null){
+      return "false";
+    } 
   }
 
 }

@@ -1,3 +1,6 @@
+vex.dialog.buttons.YES.text = 'Aceptar';
+vex.dialog.buttons.NO.text = 'Cancelar';
+
 function alertDeletePass(id){
     vex.dialog.confirm({
         message: '¿Estás seguro de que quieres eliminar esta contraseña? Esta acción es irreversible.',
@@ -17,16 +20,44 @@ function alertDeletePass(id){
 
 function alertDeleteAccount(id){
     vex.dialog.confirm({
-        message: '¿Estás seguro de que quieres eliminar esta cuenta? Esta acción es irreversible.',
+        message: '¿Deseas eliminar tu cuenta de forma permanente?',
         className: 'vex-theme-default',
-        input: [
-            `<button type="submit" class="vex-dialog-button-primary vex-dialog-button vex-first" onclick="window.location.href='web/php/pswrds.php?idCuenta__Delete=${id}'">Confirmar</button>`,
-            '<button type="button" class="vex-dialog-button-secondary vex-dialog-button vex-last" onclick="vex.closeAll()">Cancelar</button>'
-        ].join(''),
-        buttons: [],
         callback: function (value) {
             if(value == true){
-                window.location.href = `web/php/passwordsActions.php?idCuenta__Delete=${id}`;
+                vex.dialog.confirm({
+                    message: '¿Eres consciente de todas las futuras consecuencias que conlleva eliminar tu cuenta?',
+                    className: 'vex-theme-default',
+                    callback: function (value) {
+                        if(value == true){
+                            vex.dialog.confirm({
+                                message: '¿Estás completamente seguro de que quieres eliminar tu cuenta? Esta acción es irreversible',
+                                className: 'vex-theme-default',
+                                callback: function (value) {
+                                    if(value == true){
+                                        vex.dialog.open({
+                                            message: 'Para confirmar tu identidad, introduce tu contraseña nuevamente:',
+                                            className: 'vex-theme-default',
+                                            input: [
+                                                '<form action="web/php/deleteAccount.php" method="post">',
+                                                `<input type="hidden" name="idCuenta__Delete" value="${id}">`,
+                                                '<div>',
+                                                    '<input name="DeleteAccountConfirm" id="input-passGenerada" type="password" placeholder="Contraseña..." required />',
+                                                    '<button type="button" onclick="showPasswordInput()" class="vex-dialog-button vex-first btn-verPassInput" title="Mostrar"></button>',
+                                                '</div>',
+                                                `<button type="submit" class="vex-dialog-button-primary vex-dialog-button vex-first">Confirmar</button>`,
+                                                '<button type="button" class="vex-dialog-button-secondary vex-dialog-button vex-last" onclick="vex.closeAll()">Cancelar</button>',
+                                                '</form>'
+                                            ].join(''),
+                                            buttons: [],
+                                            showCloseButton: false,
+                                            callback: function (data) {}
+                                        })
+                                    }
+                                }
+                            })
+                        }
+                    }
+                })
             }
         }
     })
@@ -37,15 +68,31 @@ function alertDeletePasswords(id){
         message: '¿Estás seguro de que quieres resetear las contraseñas? Esta acción es irreversible.',
         className: 'vex-theme-default',
         input: [
-            `<button type="submit" class="vex-dialog-button-primary vex-dialog-button vex-first" onclick="window.location.href='web/php/passwordsActions.php?idContraseñas__Reset=${id}'">Confirmar</button>`,
+            `<button type="button" class="vex-dialog-button-primary vex-dialog-button vex-first" onclick="alertDeletePasswordsConfirm(${id})">Confirmar</button>`,
             '<button type="button" class="vex-dialog-button-secondary vex-dialog-button vex-last" onclick="vex.closeAll()">Cancelar</button>'
         ].join(''),
         buttons: [],
-        callback: function (value) {
-            if(value == true){
-                window.location.href = `web/php/passwordsActions.php?idCuenta__Delete=${id}`;
-            }
-        }
+        callback: function (value) {}
+    })
+}
+function alertDeletePasswordsConfirm(id){
+    vex.dialog.open({
+        message: 'Para confirmar tu identidad, introduce tu contraseña nuevamente:',
+        className: 'vex-theme-default',
+        input: [
+            '<form action="web/php/passwordsActions.php" method="post">',
+            '<div>',
+                `<input type="hidden" name="idContraseñas__Reset" value="${id}">`,
+                '<input name="pswrdDelAccountsConfirm" id="input-passGenerada" type="password" placeholder="Contraseña..." required />',
+                '<button type="button" onclick="showPasswordInput()" class="vex-dialog-button vex-first btn-verPassInput" title="Mostrar"></button>',
+            '</div>',
+            '<button type="submit" class="vex-dialog-button-primary vex-dialog-button vex-first">Aceptar</button>',
+            '<button type="button" onclick="vex.closeAll()" class="vex-dialog-button-secondary vex-dialog-button vex-last">Cancelar</button>',
+            '</form>'
+        ].join(''),
+        buttons: [],
+        showCloseButton: false,
+        callback: function (data) {}
     })
 }
 
@@ -55,7 +102,7 @@ function alertAddPass(){
         className: 'vex-theme-default',
         input: [
             '<form action="web/php/passwordsActions.php" method="post">',
-            '<input type="text" name="webADD" placeholder="Sitio web..." required />',
+            '<input type="url" name="webADD" placeholder="Sitio web..." />',
             '<input name="userADD" type="text" placeholder="Nombre de usuario/email..." required />',
             '<div>',
                 '<input name="passADD" id="input-passGenerada" type="password" placeholder="Contraseña..." required />',
@@ -93,19 +140,13 @@ function alertChangePassword(id){
         message: 'Completa los campos para cambiar la contraseña',
         className: 'vex-theme-default',
         input: [
-            '<form action="Perfil.php" method="post">',
-            '<div>',
-                '<input name="actu" id="input-passGenerada" type="password" placeholder="Contraseña actual" required />',
-                '<button type="button" onclick="showPasswordInput()" class="vex-dialog-button vex-first btn-verPassInput" title="Mostrar"></button>',
-            '</div>',
-            '<div>',
-                '<input name="nue1" id="input-passGenerada" type="password" placeholder="Contraseña nueva" required />',
-                '<button type="button" onclick="showPasswordInput()" class="vex-dialog-button vex-first btn-verPassInput" title="Mostrar"></button>',
-            '</div>',
-            '<div>',
-                '<input name="nue2" id="input-passGenerada" type="password" placeholder="Verifica contraseña nueva" required />',
-                '<button type="button" onclick="showPasswordInput()" class="vex-dialog-button vex-first btn-verPassInput" title="Mostrar"></button>',
-            '</div>', 
+            '<form action="Perfil.php" method="post" name="formChangePassword">',
+                '<input name="actu" type="password" class="inputChangePassword" placeholder="Contraseña actual" required />',
+                '<input name="nue1" type="password" class="inputChangePassword" placeholder="Contraseña nueva" required />',
+                '<input name="nue2" type="password" class="inputChangePassword" placeholder="Verifica contraseña nueva" required />',
+                '<div class="d-flex mb-2">',
+                '<input type="checkbox" id="seePasswordInputs" class="btn-check"><label class="btn btn-outline-primary" for="seePasswordInputs">Ver contraseñas</label>',
+                '</div>',
             '<button type="submit" class="vex-dialog-button-primary vex-dialog-button vex-first">Aceptar</button>','<button type="button" onclick="vex.closeAll()" class="vex-dialog-button-secondary vex-dialog-button vex-last">Cancelar</button>',
             '</form>'
         ].join(''),
@@ -113,6 +154,19 @@ function alertChangePassword(id){
         showCloseButton: false,
         callback: function (data) {}
     })
+    document.getElementById('seePasswordInputs').addEventListener('click', ()=>{
+        let inputs = document.querySelectorAll(".inputChangePassword");
+        if(document.getElementById('seePasswordInputs').checked == true){
+            inputs.forEach(e => {
+                e.type = 'text';
+            });
+        }
+        else{
+            inputs.forEach(e => {
+                e.type = 'password';
+            });
+        }
+    });
 }
 
 function alertEditPass(id, web, username, password){
@@ -122,7 +176,7 @@ function alertEditPass(id, web, username, password){
         input: [
             '<form action="web/php/passwordsActions.php" method="post">',
             `<input type="hidden" name="id" id="idCampo" value=${id}>`,
-            `<input type="text" name="webEDIT" placeholder="Sitio web..." value=${web} required>`,
+            `<input type="url" name="webEDIT" placeholder="Sitio web..." value=${web}>`,
             `<input type="text" name="userEDIT" placeholder="Nombre de usuario/email..." value=${username} required>`,
             '<div>',
             `<input name="passEDIT" id="input-passGenerada" type="password" placeholder="Contraseña..." value=${password} required />`,

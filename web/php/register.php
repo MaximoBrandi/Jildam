@@ -13,12 +13,12 @@ if (isset($_POST["nombre"]) && isset($_POST["contrasena"]) && isset($_POST["emai
     $result = consulta($conn, $consulta);
     $row = mysqli_fetch_assoc($result);
   
-  
+    
     if(isset($usuario) && isset($email)){
-        if ($row["email"] != $email || $row["deleted"] !== null ) {
-            $sql = "INSERT INTO users (email, username , password) VALUES ( '$email', '$usuario', '$contrasena')";
+
+        if (($row["email"] != $email || $row["deleted"] !== null) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $sql = "INSERT INTO users (email, username , password) VALUES ( '$email', '$usuario', '". md5($contrasena) ."')";
             $res = consulta($conn, $sql);
-      
             
             $sql = "SELECT MAX(`id`) FROM `users`";
             $res = consulta($conn, $sql);
@@ -26,9 +26,15 @@ if (isset($_POST["nombre"]) && isset($_POST["contrasena"]) && isset($_POST["emai
             $consulta = "INSERT INTO `profiles`(`user_id`) VALUES ('" . $row["MAX(`id`)"] . "')";
             $result = consulta($conn, $consulta);
             setcookie("login", $row["MAX(`id`)"], time() + (86400 * 30), "/");
+            $sql = "INSERT INTO accounts (id, user_id, web, username, password) VALUES ('null','" . $_COOKIE["login"]+1 . "', 'Jildam', '".$usuario."', '".$contrasena."')";
+            $result = consulta($conn, $sql);
+            header('Location: ../../index.php');
+        }
+        else{ 
+            setcookie("registerError", "true", time()+1, "/");
+            header('Location: ../../register.php');
         }
     }
-    
 }
-header('Location: ../../index.php')
+else header('Location: ../../index.php');
 ?>

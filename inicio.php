@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/globalStyles.css">
-    <script src="Scripts/theme.js"></script>
     <title>Jildam</title>
 </head>
 <body onload='alertLogin("checkSession")'>

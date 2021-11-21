@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/globalStyles.css">
-    <script src="Scripts/theme.js"></script>
     <title>Jildam</title>
 </head>
 <body onload='alertLogin("inicio")' class="index">
@@ -20,12 +19,12 @@
             <form>
                 <div id="logInSec" class="LogedOut__Div">
                     <label>Puede ingresar a su cuenta</label>
-                    <a class="btn btn-primary" id="boton" href="login.php" role="button">Ingresar</a>
+                    <button type="button" class="btn btn-primary" id="boton" onclick="location.href='login.php'">Ingresar</button>
                 </div>
                 
                 <div id="registerSec" class="LogedOut__Div">
                     <label>Puede crear una cuenta</label>
-                    <a class="btn btn-primary" id="boton" href="register.php" role="button">Registrarse</a>
+                    <button type="button" class="btn btn-primary" id="boton" onclick="location.href='register.php'">Registrarse</button>
                 </div>
             </form>
         </div>

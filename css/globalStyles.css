@@ -27,14 +27,16 @@
 }
 h1,h2,h3,h4,h4,h6,p,input, label, td{
     color: var(--text-primary-color) !important;
+    transition: color 0.5s;
 }
 a:hover{
     color: var(--link-color) !important;
+    transition: color 0.5s;
 }
 input{
     background-color: var(--bgcolor-primary) !important;
     border: 2px var(--border-color) solid !important;
-    transition: background-color 0.5s;
+    transition: background-color 0.5s, border 0.5s;
 }
 input:focus{
     outline: none !important;
@@ -86,7 +88,7 @@ body{
     display: flex;
     flex-direction: column;
     background-color: var(--bgcolor-secundary);
-    transition: background-color 0.5s;
+    transition: background-color 0.5s, border 0.5s;
 }
 
 
@@ -98,8 +100,8 @@ body{
 /* NAVBAR */
 .navbar{
     background-color: var(--bgcolor-primary);
-    transition: background-color 0.5s;
-    transition: background-color 0.5s;
+    transition: background-color 0.5s, border 0.5s;
+    transition: background-color 0.5s, border 0.5s;
 }
 .passnarvbar{
     display: flex;
@@ -115,6 +117,7 @@ body{
 }
 .nav-link:hover{
     background-color: var(--bgcolor-secundary);
+    text-decoration: underline;
 }
 .LogInAccount{
     display: flex;
@@ -208,7 +211,7 @@ body{
     border: var(--border-color) 2px solid;
     border-radius: 0.5em;
     text-align: center;
-    transition: background-color 0.5s;
+    transition: background-color 0.5s, border 0.5s;
 }
 #LogedOut h2{
     padding-top: 1em;
@@ -229,6 +232,7 @@ body{
     text-decoration: underline;
     font-size: 1.25em;
     padding-bottom: 1em;
+    transition: color 0.5s;
 }
 #LogedOut form #boton{
     margin: 0 auto;
@@ -291,7 +295,7 @@ body{
     align-items: center;
     justify-content: center;
     flex-flow: wrap;
-    transition: background-color 0.5s;
+    transition: background-color 0.5s, border 0.5s;
   }
   section#LogIn div#LogIn_div{
     width: 100%;
@@ -336,6 +340,7 @@ body{
     right: 3em;
     justify-content: end;
     background-color: transparent;
+    filter: var(--svg-color);
 }
   #boton_repiola{
     border: none;
@@ -407,7 +412,7 @@ body{
     width: 100%;
     height: 100vh;
     background-color: var(--bgcolor-secundary);
-    transition: background-color 0.5s;
+    transition: background-color 0.5s, border 0.5s;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -422,7 +427,7 @@ body{
     background-color: var(--bgcolor-primary);
     border-radius: 1em;
     box-shadow: var(--box-shadow-values);
-    transition: background-color 0.5s;
+    transition: background-color 0.5s, border 0.5s;
 }
 .opcionElegida{
     width: 80%;
@@ -472,7 +477,7 @@ body{
     border-radius: 7px;
     border: none;
     background-color: var(--bgcolor-primary);
-    transition: background-color 0.5s;
+    transition: background-color 0.5s, border 0.5s;
 }
 .inputStyle{
     width: 14em;
@@ -481,7 +486,7 @@ body{
     border-radius: 7px;
     border: none;
     background-color: var(--bgcolor-primary);
-    transition: background-color 0.5s;
+    transition: background-color 0.5s, border 0.5s;
 }
 ::-webkit-input-placeholder {
   color: rgb(170, 170, 170);
@@ -575,7 +580,7 @@ section#gestionarPass{
     padding-bottom: 3em;
     padding-top: 3em;
     background-color: var(--bgcolor-secundary);
-    transition: background-color 0.5s;
+    transition: background-color 0.5s, border 0.5s;
 }
 #gestionarPass hr{
     color: var(--text-primary-color);
@@ -591,7 +596,7 @@ table thead{
     font-weight: 400 !important;
     letter-spacing: 0.03em;
     background-color: var(--btn-color);
-    transition: background-color 0.5s;
+    transition: background-color 0.5s, border 0.5s;
 }
 table tr, thead{
     border-radius: inherit;
@@ -685,7 +690,7 @@ table th, td{
 }
 .btn-addPass{
     background-color: var(--btn-color);
-    transition: background-color 0.5s;
+    transition: background-color 0.5s, border 0.5s;
     color: #FFF;
     border: none;
     width: 7.5em;
@@ -754,13 +759,15 @@ table th, td{
 /* ALERTAS */
 .vex-content{
     background-color: var(--bgcolor-secundary) !important;
-    transition: background-color 0.5s;
+    transition: background-color 0.5s, border 0.5s;
 }
 .vex-dialog-message{
     color: var(--text-primary-color);
     text-align: center;
 }
-
+.ajs-message{
+    border-radius: 1em !important;
+}
 
 
 
@@ -785,7 +792,7 @@ table th, td{
     padding-top: 6em;
     background-color: var(--bgcolor-secundary);
     border-right: 1px solid var(--border-color);
-    transition: background-color 0.5s;
+    transition: background-color 0.5s, border 0.5s;
 }
 #navPerfil a{
     color: #ffff;
@@ -805,7 +812,7 @@ table th, td{
     display: flex;
     flex-direction: row;
     background-color: var(--bgcolor-primary);
-    transition: background-color 0.5s;
+    transition: background-color 0.5s, border 0.5s;
     width: 75%;
     height: 100%;
 }
