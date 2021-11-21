@@ -19,10 +19,11 @@ include "web/php/menu.php";
       <form action="web/php/register.php" method="post">
         <input type="text" name="nombre" placeholder="Usuario" class="login-input form-control" autocomplete="off" required><br>
         <input type="email" name="email" placeholder="Correo" class="login-input form-control" autocomplete="off" required><br>
-        <input type="password" pattern="[A-Za-z0-9_-]{1,50}" name="contrasena" placeholder="Contraseña" class="login-input form-control" id="pswrd" onkeyup='confirmPswrd()' required>
-        <input type="password" pattern="[A-Za-z0-9_-]{1,50}" placeholder="Confirmar contraseña" class="login-input form-control" id="pswrd_confirm" onkeyup='confirmPswrd()' required>
-        <div class="d-flex justify-content-start mt-2">
-          <input type="checkbox" id="seePasswordInputs" class="btn-check" onclick="seeRegisterPasswords()"><label class="btn btn-outline-primary" for="seePasswordInputs">Ver contraseñas</label>
+        <input type="password" pattern="[A-Za-z0-9_-]{1,50}" name="contrasena" placeholder="Contraseña" class="login-input form-control inputPasswordRegister" id="pswrd" onkeyup='confirmPswrd()' required>
+        <input type="password" pattern="[A-Za-z0-9_-]{1,50}" placeholder="Confirmar contraseña" class="login-input form-control inputPasswordRegister" id="pswrd_confirm" onkeyup='confirmPswrd()' required>
+        <div class="d-flex justify-content-around mt-2">
+          <input type="checkbox" id="seePasswordInputs" class="btn-check align-middle" onclick="seeRegisterPasswords()" style="width: 40%;"><label class="btn btn-outline-primary" for="seePasswordInputs">Ver contraseñas</label>
+          <button type="button" id="generateRegisterPassword" class="btn btn-primary" style="width: 40%;">Genera una contraseña</button>
         </div>
         <span id='message'></span>
         <a href="login.php">¿Tienes una cuenta? ¡Inicia sesión!</a>
@@ -30,7 +31,7 @@ include "web/php/menu.php";
       </form>
     </div>
   </section>
-  <script src="Scripts/functions.js"></script>
-  <script src="Scripts/clickGestPass.js"></script>
 </body>
+<script src="Scripts/clickGestPass.js"></script>
+  <script src="Scripts/functions.js"></script>
 </html>
