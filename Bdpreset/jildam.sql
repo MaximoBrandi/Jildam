@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2021 a las 20:54:45
--- Versión del servidor: 10.4.19-MariaDB
--- Versión de PHP: 7.3.28
+-- Tiempo de generación: 21-11-2021 a las 03:05:28
+-- Versión del servidor: 10.4.20-MariaDB
+-- Versión de PHP: 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -21,9 +21,6 @@ SET time_zone = "+00:00";
 -- Base de datos: `jildam`
 --
 
-CREATE DATABASE IF NOT EXISTS `jildam` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `jildam`;
-
 -- --------------------------------------------------------
 
 --
@@ -36,7 +33,7 @@ CREATE TABLE `accounts` (
   `web` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `deleted` date DEFAULT NULL
+  `deleted` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -64,9 +61,9 @@ CREATE TABLE `users` (
   `id` int(255) NOT NULL,
   `email` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `verification` date DEFAULT NULL,
-  `deleted` date DEFAULT NULL
+  `password` varchar(255) NOT NULL,
+  `verification` datetime DEFAULT NULL,
+  `deleted` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

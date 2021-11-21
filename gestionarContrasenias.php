@@ -15,8 +15,10 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/libraries/vex.css">
     <link rel="stylesheet" href="css/libraries/vex-theme-default.css">
-    <link rel="stylesheet" href="css/globalStyles.css">
-    <script src="Scripts/theme.js"></script>
+    <link rel="stylesheet" href="css/globalStyles.css"> 
+    <link rel="stylesheet" href="css/libraries/alertify.min.css"/>
+    <link rel="stylesheet" href="css/libraries/alertify-theme-default.min.css"/>
+    <script src="Scripts/libraries/alertify.min.js"></script>
     <script src="Scripts/index.js"></script>
     <script src="Scripts/functions.js"></script>
     <script src="Scripts/libraries/vex.js"></script>
@@ -24,11 +26,18 @@
     <title>Gestionar Contraseñas</title>
 </head>
 <body onload='alertLogin("checkSession")'>
+    <?php
+        if(isset($_GET['delAccountsRes'])){
+            $delAccountsResult = $_GET['delAccountsRes'];
+            if($delAccountsResult == 'true') echo "<script>alertify.notify('Contraseñas eliminadas exitosamente', 'success', 5, function(){});</script>";
+
+            else if($delAccountsResult == 'false') echo "<script>alertify.notify('No se ha podido validar tu identidad', 'error', 5, function(){});</script>";
+        }
+    ?>
     <section id="gestionarPass">
         <h2>Gestionar contraseñas</h2>
         <hr><br><br>
-        <center>
-        <table class="table-accounts" id="table-accounts">
+        <table class="table-accounts mx-auto" id="table-accounts">
             <thead id="table-head">
                 <tr style="border-top: none;">
                     <th align="center" style="border-top-left-radius: inherit;">Página</th>
@@ -83,7 +92,6 @@
                 </tr>
             </tbody>
         </table>
-    </center>
     </section>
     <script src="Scripts/alerts.js"></script>
     <script src="Scripts/clickGestPass.js"></script>

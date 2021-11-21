@@ -83,7 +83,6 @@
     <link rel="stylesheet" href="css/libraries/vex.css">
     <link rel="stylesheet" href="css/libraries/vex-theme-default.css">
     <link rel="stylesheet" href="css/globalStyles.css">
-    <script src="Scripts/theme.js"></script>
     <script src="Scripts/index.js"></script>
     <script src="Scripts/functions.js"></script>
     <script src="Scripts/libraries/vex.js"></script>

@@ -11,6 +11,7 @@
         exit("Error en conexion: " . mysqli_connect_error());
     }
 
+    /* Función para realizar consultas en la base de datos de una manera más eficiente */
     function consulta($db, $consulta){
         $res = mysqli_query($db, $consulta);
         if(!$res){

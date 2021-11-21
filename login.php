@@ -13,7 +13,6 @@ include "web/php/menu.php";
     <title>LogIn</title>
 </head>
 <body onload='alertLogin("login")'>
-    <script src="Scripts/theme.js"></script>
   <section id="LogIn" style="height: 40em;">
     <div id='errorAlert' class='vanish'></div>
     <div id="LogIn_div">

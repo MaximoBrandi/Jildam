@@ -11,35 +11,18 @@ include "web/php/menu.php";
     <link rel="stylesheet" href="css/globalStyles.css">
     <title>Jildam</title>
 </head>
-<!-- style="background: linear-gradient(#ff8000, #f44611);" -->
 <body onload='alertLogin("register")' >
-    <!-- <nav class="navbar navbar-light passnarvbar">
-        <div class="container-fluid">
-            <a class="navbar-brand align-middle d-flex">
-                <button onclick="window.location.href = 'index.php'" formaction='index.php' class="btn-inicio"
-                    title="Inicio"></button>
-                <p class="mt-auto">Password Manager</p>
-            </a>
-        </div>
-        <div class="LogInAccount" id="LogInSession">
-          <button id="switchTheme" class="darkMode" title="Cambiar a tema claro/oscuro"></button>
-      </div>
-    </nav> -->
-    <script src="Scripts/theme.js"></script>
-  <section id="LogIn" style="height: auto;">
+  <section id="LogIn" style="height: auto; padding-bottom: 1em;">
     <div id='errorAlert' class='vanish'></div>
     <div id="LogIn_div" style="margin-top: 1.75em;">
-      <h2>Registrate</h2>
+      <h2>Regístrate</h2>
       <form action="web/php/register.php" method="post">
-        <input type="text" name="nombre" placeholder="Usuario" class="login-input form-control" required><br>
-        <input type="email" name="email" placeholder="Correo" class="login-input form-control" required><br>
-        <div class="d-flex">
-          <input type="password" pattern="[A-Za-z0-9_-]{1,50}" name="contrasena" placeholder="Contraseña" class="login-input form-control" id="pswrd" onkeyup='confirmPswrd()' required style="margin-left: 2em;">
-          <button type="button" class="btn-verPassLogin" title="Mostrar"></button>
-        </div>
-        <div class="d-flex">
-          <input type="password" pattern="[A-Za-z0-9_-]{1,50}" placeholder="Confirmar contraseña" class="login-input form-control" id="pswrd_confirm" onkeyup='confirmPswrd()' required style="margin-left: 2em;">
-          <button type="button" class="btn-verPassLogin" title="Mostrar"></button>
+        <input type="text" name="nombre" placeholder="Usuario" class="login-input form-control" autocomplete="off" required><br>
+        <input type="email" name="email" placeholder="Correo" class="login-input form-control" autocomplete="off" required><br>
+        <input type="password" pattern="[A-Za-z0-9_-]{1,50}" name="contrasena" placeholder="Contraseña" class="login-input form-control" id="pswrd" onkeyup='confirmPswrd()' required>
+        <input type="password" pattern="[A-Za-z0-9_-]{1,50}" placeholder="Confirmar contraseña" class="login-input form-control" id="pswrd_confirm" onkeyup='confirmPswrd()' required>
+        <div class="d-flex justify-content-start mt-2">
+          <input type="checkbox" id="seePasswordInputs" class="btn-check" onclick="seeRegisterPasswords()"><label class="btn btn-outline-primary" for="seePasswordInputs">Ver contraseñas</label>
         </div>
         <span id='message'></span>
         <a href="login.php">¿Tienes una cuenta? ¡Inicia sesión!</a>
@@ -49,6 +32,5 @@ include "web/php/menu.php";
   </section>
   <script src="Scripts/functions.js"></script>
   <script src="Scripts/clickGestPass.js"></script>
-  <script src="Scripts/bootstrap.bundle.js"></script>
 </body>
 </html>

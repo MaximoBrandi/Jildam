@@ -36,3 +36,4 @@
     </div>
   </div>
 </nav>
+<script src="Scripts/theme.js"></script>
