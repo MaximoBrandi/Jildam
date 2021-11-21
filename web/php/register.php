@@ -15,14 +15,8 @@ if (isset($_POST["nombre"]) && isset($_POST["contrasena"]) && isset($_POST["emai
   
     
     if(isset($usuario) && isset($email)){
-<<<<<<< HEAD
         if ($row["email"] != $email || $row["deleted"] !== null ) {
             $sql = "INSERT INTO users (email, username , password) VALUES ( '" . $conn->real_escape_string($email) . "', '" . $conn->real_escape_string($usuario) . "', '" . $conn->real_escape_string(md5($contrasena)) . "')";
-=======
-
-        if (($row["email"] != $email || $row["deleted"] !== null) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $sql = "INSERT INTO users (email, username , password) VALUES ( '$email', '$usuario', '". md5($contrasena) ."')";
->>>>>>> versionFinalBeta
             $res = consulta($conn, $sql);
             
             $sql = "SELECT MAX(`id`) FROM `users`";
