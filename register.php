@@ -31,6 +31,10 @@ include "web/php/menu.php";
       </form>
     </div>
   </section>
+  <footer style="background-color:#2244;">
+    <?php require "fotter/footer.php"; ?>
+    </footer>
+
 </body>
 <script src="Scripts/clickGestPass.js"></script>
   <script src="Scripts/functions.js"></script>

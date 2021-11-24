@@ -149,5 +149,9 @@
     <script src="Scripts/alerts.js"></script>
     <script src="Scripts/clickGestPass.js"></script>
     <script src="Scripts/passGenerator.js"></script>
+    <footer style="background-color:#2244;">
+    <?php require "fotter/footer.php"; ?>
+    </footer>
+
 </body>
 </html>

@@ -93,6 +93,9 @@
             </tbody>
         </table>
     </section>
+    <footer style="background-color:#2244;">
+    <?php require "fotter/footer.php"; ?>
+    </footer>
     <script src="Scripts/alerts.js"></script>
     <script src="Scripts/clickGestPass.js"></script>
     <script src="Scripts/passGenerator.js"></script>
