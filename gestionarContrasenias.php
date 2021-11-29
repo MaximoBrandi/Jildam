@@ -1,8 +1,10 @@
 <?php
-    include "web/php/menu.php";
-    require_once "web/php/conexion.php";
+    require_once "php/functions/conexion.php";
+    include "php/functions/checkSession.php";
+    checkSession(0);
+    include "php/presetHTML/menu.php";
 
-    $consulta = "SELECT `id`, `user_id`, `web`, `username`, `password`, `deleted` FROM `accounts` WHERE `user_id` = " . $_COOKIE["login"] . " AND deleted is NULL";
+    $consulta = "SELECT `id`, `user_id`, `web`, `username`, `password`, `deleted` FROM `accounts` WHERE `user_id` = " . $_SESSION["Login"] . " AND deleted is NULL";
     $result = consulta($conn, $consulta);
 ?>
 <!DOCTYPE html>
@@ -12,35 +14,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="">
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/libraries/vex.css">
-    <link rel="stylesheet" href="css/libraries/vex-theme-default.css">
+    <link rel="stylesheet" href="libraries/vex/vex.css">
+    <link rel="stylesheet" href="libraries/vex/vex-theme-default.css">
+    <link rel="stylesheet" href="libraries/alertify/alertify.min.css"/>
+    <link rel="stylesheet" href="libraries/alertify/alertify-theme-default.min.css"/>
+    <link rel="stylesheet" href="libraries/sweetalert2/sweetalert2.min.css">
     <link rel="stylesheet" href="css/globalStyles.css"> 
-    <link rel="stylesheet" href="css/libraries/alertify.min.css"/>
-    <link rel="stylesheet" href="css/libraries/alertify-theme-default.min.css"/>
-    <script src="Scripts/libraries/alertify.min.js"></script>
-    <script src="Scripts/index.js"></script>
-    <script src="Scripts/functions.js"></script>
-    <script src="Scripts/libraries/vex.js"></script>
-    <script src="Scripts/libraries/vex.combined.min.js"></script>
+    <script src="libraries/alertify/alertify.min.js"></script>
+    <script src="libraries/vex/vex.js"></script>
+    <script src="libraries/vex/vex.combined.min.js"></script>
+    <script src="libraries/sweetalert2/sweetalert2.all.min.js"></script>
     <title>Gestionar Contraseñas</title>
 </head>
-<body onload='alertLogin("checkSession")'>
-    <?php
-        if(isset($_GET['delAccountsRes'])){
-            $delAccountsResult = $_GET['delAccountsRes'];
-            if($delAccountsResult == 'true') echo "<script>alertify.notify('Contraseñas eliminadas exitosamente', 'success', 5, function(){});</script>";
-
-            else if($delAccountsResult == 'false') echo "<script>alertify.notify('No se ha podido validar tu identidad', 'error', 5, function(){});</script>";
-        }
-    ?>
+<body onload="alerts('passManagement')">
     <section id="gestionarPass">
         <h2>Gestionar contraseñas</h2>
         <hr><br><br>
         <table class="table-accounts mx-auto" id="table-accounts">
             <thead id="table-head">
                 <tr style="border-top: none;">
-                    <th align="center" style="border-top-left-radius: inherit;">Página</th>
+                    <th align="center" style="border-top-left-radius: inherit;">Sitio</th>
                     <th align="center">Usuario</th>
                     <th align="center">Contraseña</th>
                     <th align="center" colspan="3" style="border-top-right-radius: inherit;">Opciones</th>
@@ -60,10 +53,10 @@
                         <button id="ver" class="btn-showPass" class="btn-opcion" onclick="clickedView('pass<?php echo $fila['id'];?>')" title="Mostrar"></button>
                     </td>
                     <td class="opciones desktopButtons" align="center">
-                        <button type="button" onclick="<?php if($fila['web'] === 'Jildam'){echo "alertify.notify('No puedes eliminar tu contraseña de Jildam', 'error', 5, function(){});";}else{ ?> alertDeletePass(<?php echo $fila['id'] ?>) <?php } ?>" class="btn-opcion btn-delPass" title="Eliminar"></button>
+                        <button type="button" onclick="alertDeletePass(<?php echo $fila['id'] ?>)" class="btn-opcion btn-delPass" title="Eliminar"></button>
                     </td>
                     <td class="opciones desktopButtons" align="center">
-                        <button class="btn-opcion btn-editPass" onclick="<?php if($fila['web'] === 'Jildam'){echo "alertify.notify('Para editar tu contraseña de Jildam, ve a Perfil - Privacidad y Seguridad.', 'custom', 5, function(){});";}else{ ?> alertEditPass('<?php echo $fila['id']; ?>', '<?php echo $fila['web']; ?>', '<?php echo $fila['username']; ?>', '<?php echo $fila['password']; ?>') <?php } ?>" title="Editar"></button>
+                        <button class="btn-opcion btn-editPass" onclick="alertEditPass('<?php echo $fila['id']; ?>', '<?php echo $fila['web']; ?>', '<?php echo $fila['username']; ?>', '<?php echo $fila['password']; ?>')" title="Editar"></button>
                     </td>
                     <td class="opciones desktopButtons" align="center">
                             <button class="btn-opcion btn-copyPass" onclick="copyPassword('pass<?php echo $fila['id'] ?>')"></button>
@@ -76,8 +69,8 @@
                             <ul class="dropdown-menu">
                                 <li><div class="dropdown-item" onclick="clickedView('pass<?php echo $fila['id'];?>')">Ver</div></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><div class="dropdown-item" onclick="<?php if($fila['web'] === 'Jildam'){echo "alertify.notify('No puedes eliminar tu contraseña de Jildam', 'error', 5, function(){});";}else{ ?> alertDeletePass(<?php echo $fila['id'] ?>) <?php } ?>">Eliminar</div></li>
-                                <li><div class="dropdown-item" onclick="<?php if($fila['web'] === 'Jildam'){echo "alertify.notify('Para editar tu contraseña de Jildam, ve a Perfil - Privacidad y Seguridad.', 'custom', 5, function(){});";}else{ ?> alertEditPass('<?php echo $fila['id']; ?>', '<?php echo $fila['web']; ?>', '<?php echo $fila['username']; ?>', '<?php echo $fila['password']; ?>') <?php } ?>">Editar</div></li>
+                                <li><div class="dropdown-item" onclick="alertDeletePass(<?php echo $fila['id'] ?>)">Eliminar</div></li>
+                                <li><div class="dropdown-item" onclick="alertEditPass('<?php echo $fila['id']; ?>', '<?php echo $fila['web']; ?>', '<?php echo $fila['username']; ?>', '<?php echo $fila['password']; ?>')">Editar</div></li>
                                 <li><div class="dropdown-item" onclick="copyPassword('pass<?php echo $fila['id'] ?>')">Copiar</div></li>
                             </ul>
                         </div>
@@ -93,11 +86,10 @@
             </tbody>
         </table>
     </section>
-    <footer style="background-color:#2244;">
-    <?php require "fotter/footer.php"; ?>
+    <footer class="w-100" style="position:static;bottom:0;">
+        <?php include "php/presetHTML/footer.php"; ?>
     </footer>
-    <script src="Scripts/alerts.js"></script>
-    <script src="Scripts/clickGestPass.js"></script>
-    <script src="Scripts/passGenerator.js"></script>
+    <script src="js/globalFunctions.js"></script>
+    <script src="js/alerts.js"></script>
 </body>
 </html>

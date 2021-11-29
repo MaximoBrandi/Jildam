@@ -1,17 +1,19 @@
 <?php
-    include "web/php/menu.php";
+    require_once "php/functions/conexion.php";
+    include "php/functions/checkSession.php";
+    checkSession(1);
+    include "php/presetHTML/menu.php";
 ?>
 <html lang="es-AR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/globalStyles.css">
+    <link rel="stylesheet" href="css/normalize.css">
     <title>Jildam</title>
 </head>
-<body onload='alertLogin("inicio")' class="index">
+<body class="index">
     <section id="logSec">
         <div id="LogedOut">
             <h2>¡Bienvenido/a!</h2>
@@ -29,10 +31,10 @@
             </form>
         </div>
     </section>
-     <footer style="background-color:#2244;">
-    <?php require "fotter/footer.php"; ?>
+    <footer style="margin-top: 7.5em;">
+        <?php include "php/presetHTML/footer.php"; ?>
     </footer>
 </body>
-<script src="Scripts/functions.js"></script>
-<script src="Scripts/bootstrap.bundle.js"></script>
+<script src="js/globalFunctions.js"></script>
+<script src="js/bootstrap.bundle.js"></script>
 </html>

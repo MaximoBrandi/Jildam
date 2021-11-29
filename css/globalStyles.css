@@ -47,7 +47,7 @@ input:focus{
 /* INCLUSIÓN DE LA FUENTE A UTILIZAR */
 @font-face{
     font-family: "Inter";
-    src: url(../recursos/fonts/Inter-Light.ttf);
+    src: url(ttf/Inter-Light.ttf);
 }
 
 
@@ -57,7 +57,7 @@ button.link { background:none; border:none; }
 
 /* Boton para cambiar el tema de la página */
 .lightMode{
-    background-image: url('../recursos/img/sun.svg');
+    background-image: url('../img/sun.svg');
     background-repeat: no-repeat;
     background-size: contain;
     width: 40px;
@@ -71,7 +71,7 @@ button.link { background:none; border:none; }
     filter: invert(77%) sepia(52%) saturate(3898%) hue-rotate(6deg) brightness(111%) contrast(106%);
 }
 .darkMode{
-    background-image: url('../recursos/img/moon.svg');
+    background-image: url('../img/moon.svg');
     background-repeat: no-repeat;
     background-size: contain;
     width: 40px;
@@ -145,7 +145,7 @@ body{
 .btn-inicio{
     width: 3em;
     height: 3em;
-    background-image: url("../recursos/img/jildam_icon2.svg");
+    background-image: url("../img/jildam_icon2.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -154,13 +154,13 @@ body{
     filter: var(--svg-color);
   }
 .btn-inicio:hover{
-    background-image: url("../recursos/img/home.svg");
+    background-image: url("../img/home.svg");
     transform: rotate(-360deg);
     filter: invert(24%) sepia(49%) saturate(4757%) hue-rotate(211deg) brightness(102%) contrast(106%);
     transition: all 0.75s;
 }
 .btn-inicio:not(:hover){
-    background-image: url("../recursos/img/jildam_icon2.svg");
+    background-image: url("../img/jildam_icon2.svg");
     transform: rotate(360deg);
     filter: var(--svg-color);
     transition: all 0.75s;
@@ -168,7 +168,7 @@ body{
 .btn-logout{
     width: 40px;
     height: 40px;
-    background-image: url("../recursos/img/log-out.svg");
+    background-image: url("../img/log-out.svg");
     background-size: contain;
     background-repeat: no-repeat;
     border: none;
@@ -206,7 +206,7 @@ body{
     flex-direction: column;
     width: 100%;
     height: 100%;
-    margin-top: 3em;
+    margin-top: 15em;
     background-color: var(--bgcolor-primary);
     box-shadow: var(--box-shadow-values);
     border: var(--border-color) 2px solid;
@@ -331,7 +331,7 @@ body{
     position: relative;
     width: 2em;
     height: 2em;
-    background-image: url("../recursos/img/eye.svg");
+    background-image: url("../img/eye.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -417,40 +417,50 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 5em;
 }
 #menuBase{
-    width: 75%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
     background-color: var(--bgcolor-primary);
     border-radius: 1em;
-    box-shadow: var(--box-shadow-values);
     transition: background-color 0.5s, border 0.5s;
 }
 .opcionElegida{
-    width: 80%;
-    height: 100%;
-
+    width: 100%;
+    height: 80%;
+    background-color: var(--bgcolor-secundary);
 }
 .opcionMenu{
+    position: fixed;
+    bottom: 0;
     width: 100%;
     height: 25%;
+    background-color: var(--bgcolor-primary);
     display: flex;
     flex-flow: row;
     align-items: center;
     justify-content: center;
-    border-bottom-right-radius: 1em;
-    border-bottom-left-radius: 1em;
     border: solid var(--border-color) 1px;
+    transition: background-color 0.5s, border 0.5s;
+    box-shadow: var(--box-shadow-values);
 }
 .loggednt{
     display: none;
 }
-
+.managePasswords{
+    font-size: 1.35em;
+    width: 30%;
+    height: 30%;
+}
+.manageProfile{
+    font-size: 1.35em;
+    width: 30%;
+    height: 30%;
+}
 /* Ingresar Cuenta - Opcion */
 
 .MenuOpcions__base{
@@ -462,7 +472,6 @@ body{
     height: 100%;
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
-    border: solid var(--border-color) 1px;
     border-bottom: none;
 }
 .MenuOpcions__base h2{
@@ -521,7 +530,7 @@ body{
         border-bottom-left-radius: 0;
     }
     .managePasswords{
-        background-image: url("../recursos/img/list.svg");
+        background-image: url("../img/list.svg");
         border: none;
         width: 5em !important;
         height: 5em;
@@ -532,7 +541,7 @@ body{
         filter: var(--svg-color);
     }
     .manageProfile{
-        background-image: url("../recursos/img/user.svg");
+        background-image: url("../img/user.svg");
         border: none;
         width: 5em !important;
         height: 5em;
@@ -632,7 +641,7 @@ table th, td{
     border-bottom-right-radius: inherit;
 }
 .btn-showPass{
-    background-image: url("../recursos/img/eye.svg");
+    background-image: url("../img/eye.svg");
     width: 2em;
     height: 2em;
     background-repeat: no-repeat;
@@ -645,7 +654,7 @@ table th, td{
     filter: var(--svg-color);
 }
 .btn-editPass{
-    background-image: url("../recursos/img/edit.svg");
+    background-image: url("../img/edit.svg");
     width: 2.25em;
     height: 2.25em;
     background-repeat: no-repeat;
@@ -657,7 +666,7 @@ table th, td{
     filter: var(--svg-color);
 }
 .btn-copyPass{
-    background-image: url("../recursos/img/clipboard.svg");
+    background-image: url("../img/clipboard.svg");
     width: 2.25em;
     height: 2.25em;
     background-repeat: no-repeat;
@@ -677,7 +686,7 @@ table th, td{
     transition: all 0.25s;
 }
 .btn-delPass{
-    background-image: url("../recursos/img/trash-2.svg");
+    background-image: url("../img/trash-2.svg");
     width: 2.5em;
     height: 2.5em;
     background-repeat: no-repeat;
@@ -696,10 +705,10 @@ table th, td{
     transition: background-color 0.5s, border 0.5s;
     color: #FFF;
     border: none;
-    width: 7.5em;
+    width: 25%;
     font-size: 1.25em;
-    height: 2em;
-    padding-top: 0;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     text-align: center;
     vertical-align: center;
     border-radius: 1em;
@@ -716,7 +725,7 @@ table th, td{
     position: absolute;
     width: 1em;
     height: 1em;
-    background-image: url("../recursos/img/eye.svg");
+    background-image: url("../img/eye.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -734,7 +743,7 @@ table th, td{
     position: absolute;
     width: 1em;
     height: 1em;
-    background-image: url("../recursos/img/refresh-cw.svg");
+    background-image: url("../img/refresh-cw.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -774,7 +783,13 @@ table th, td{
 .ajs-message{
     border-radius: 1em !important;
 }
-
+.swal2-popup{
+    background-color: var(--bgcolor-primary) !important;
+    color: var(--text-primary-color) !important;
+}
+.swal2-html-container{
+    color: var(--text-primary-color);
+}
 
 
 
@@ -787,7 +802,7 @@ table th, td{
 #seccionOpciones{
     display: flex;
     flex-direction: row;
-    height: auto;
+    height: 100vh;
 }
 #navPerfil {
     display: flex;
@@ -903,9 +918,38 @@ table th, td{
     font-size: 1.35em;
 }
 
+/* ---------------------- */
+/* ------FOOTER------ */
+/* ---------------------- */
+.footer-container{
+    background-color: var(--bgcolor-secundary);
+    transition: background-color 0.5s;
+}
+.footer-logo{
+    width: 6em;
+    height: 6em;
+    margin: 0 auto;
+    filter: var(--svg-color);
+    background-image: url("../img/jildam_icon.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: filter 0.5s;
+}
+.social-link-icon{
+    filter: var(--svg-color);
+}
+.social-link-icon:hover{
+    filter: invert(71%) sepia(77%) saturate(4895%) hue-rotate(234deg) brightness(98%) contrast(101%);
+}
+.social-link-icon:not(:hover){
+    filter: var(--svg-color);
+}
 
-
-
+/* footer de perfil.php */
+#footerPerfil{
+    margin-top: -3em;
+}
 /* ---------------------- */
 /* ------RESPONSIVE------ */
 /* ---------------------- */
@@ -1010,6 +1054,9 @@ table th, td{
     #table-accounts th{
         padding: 1em;
     }
+    #footerPerfil{
+        margin-top: 8em;
+    }
 }
 @media (max-width: 500px) {
     html {
@@ -1022,9 +1069,15 @@ table th, td{
     table th, td{
         padding: 0.5em;
     }
+    #table-accounts{
+        font-size: 8px;
+    }
 }
 @media (max-width: 375px) {
     html {
         font-size: 8px;
+    }
+    #table-accounts{
+        font-size: 5px;
     }
 }

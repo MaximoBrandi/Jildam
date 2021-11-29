@@ -1,77 +1,16 @@
 ﻿<?php
-    include "web/php/menu.php";
-    require_once "web/php/conexion.php";
+    require_once "php/functions/conexion.php";
+    include "php/functions/checkSession.php";
+    checkSession(0);
+    include "php/presetHTML/menu.php";
     
     error_reporting(0);
-
-    /* $consulta = "SELECT `email` FROM `users` WHERE `deleted` is null AND `user_id` = " . $_COOKIE["login"];
+    
+    $consulta = "SELECT users.username, `name`, `surname`, `biography`, `pfp` FROM `profiles` INNER JOIN users ON profiles.user_id = users.id WHERE `user_id` = " . $_SESSION["Login"];
     $result = consulta($conn, $consulta);
     $row = mysqli_fetch_assoc($result);
-
-    if ($row["email"] == null) {
-        setcookie("login", "owo", time()-3600, "/");
-    } */
-    if (isset($_COOKIE["login"])) {
-        $consulta = "SELECT `name`, `surname`, `biography`, `pfp` FROM `profiles` WHERE `user_id` = " . $_COOKIE["login"];
-        $result = consulta($conn, $consulta);
-        $row = mysqli_fetch_assoc($result);
-    
-        $consulta = "SELECT `username` FROM `users` WHERE `id` = " . $_COOKIE["login"];
-        $result = consulta($conn, $consulta);
-        $username = mysqli_fetch_assoc($result);
-    
-        if (isset($_POST["User"]) && isset($_POST["Name"]) && isset($_POST["surName"]) && isset($_POST["Bio"])){
-            $sub_User = $_POST["User"];
-            $sub_Name = $_POST["Name"];
-            $sub_surName = $_POST["surName"];
-            $sub_Bio = $_POST["Bio"];
-            
-            $User = strip_tags($sub_User);
-            $Name = strip_tags($sub_Name);
-            $surName = strip_tags($sub_surName);
-            $Bio = strip_tags($sub_Bio);
-    
-            $consulta = "UPDATE `profiles` SET `name`='" . $conn->real_escape_string($Name) . "',`surname`='" . $conn->real_escape_string($surName) . "',`biography`='" . $conn->real_escape_string($Bio) . "'WHERE `user_id` = " . $_COOKIE["login"];
-            $result = consulta($conn, $consulta);
-            $consulta = "UPDATE `users` SET `username`='" . $conn->real_escape_string($User) . "' WHERE `id` = " . $_COOKIE["login"];
-            $result = consulta($conn, $consulta);
-            header("Location: Perfil.php");
-        }
-
-        $consulta = "SELECT `password` FROM `users` WHERE `id` = " . $_COOKIE["login"];
-        $result = consulta($conn, $consulta);
-        $pass = mysqli_fetch_assoc($result);
-
-        if (isset($_POST["actu"]) && isset($_POST["nue1"]) && isset($_POST["nue2"])) {
-            $passactu = md5($_POST["actu"]);
-            if ($pass["password"] == $passactu) {
-                if ($_POST["nue1"] == $_POST["nue2"]) {
-                    $newpass = $_POST["nue1"];
-                    $sql = "UPDATE users SET password = '" . md5($newpass) . "' WHERE id = " . $_COOKIE["login"];
-                    consulta($conn, $sql);
-                    $sql = "UPDATE accounts SET password = '" . $newpass . "' WHERE user_id = " . $_COOKIE["login"] . " AND web = 'Jildam'";
-                    consulta($conn, $sql);
-                }
-            }
-        }
-
-        if (isset($_POST["webIMG"])) {
-            $image = $_POST["webIMG"];
-
-            $sql = "UPDATE profiles SET pfp = '$image' WHERE user_id = " . $_COOKIE["login"];
-            consulta($conn, $sql);
-        }else if($row["pfp"] !== ""){
-            $image = $row["pfp"];
-        }else{
-            $image = "recursos/img/perfilRandom.png";
-        }
-    
-        if ($pass["password"] == $_POST["oldPass"] && isset($_POST["oldPass"]) && isset($_POST["newPass"])){
-            $newPass = $_POST["newPass"];
-    
-            $consulta = "UPDATE `users` SET `password`='" . $newPass . "' WHERE `id` = " . $_COOKIE["login"];
-            $result = consulta($conn, $consulta);
-        }
+    if($row['pfp'] == ''){
+        $image = 'img/circled-user-icon.svg';
     }
 ?>
 <!DOCTYPE html>
@@ -79,19 +18,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="recursos/img/icon.png">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/libraries/vex.css">
-    <link rel="stylesheet" href="css/libraries/vex-theme-default.css">
+    <link rel="stylesheet" href="libraries/vex/vex.css">
+    <link rel="stylesheet" href="libraries/vex/vex-theme-default.css">
+    <link rel="stylesheet" href="libraries/sweetalert2/sweetalert2.min.css">
     <link rel="stylesheet" href="css/globalStyles.css">
-    <script src="Scripts/index.js"></script>
-    <script src="Scripts/functions.js"></script>
-    <script src="Scripts/libraries/vex.js"></script>
-    <script src="Scripts/libraries/vex.combined.min.js"></script>
+    <script src="libraries/sweetalert2/sweetalert2.all.min.js"></script>
     <title>Perfil</title>
 </head>
-<body onload='alertLogin("checkSession")'>
+<body onLoad="profileEvents()">
     <center>
         <section id="seccionOpciones">
             <nav id="navPerfil">
@@ -107,10 +43,10 @@
                         <img id="photoPerfilCambiar" src="<?php echo $image; ?>">
                         <button id="linkPerfilCambiar" class="link" onclick="changeUserPic()">Cambiar</button>
                     </div>
-                    <form id="formContenido" class="text-center" action="Perfil.php" method="post">
+                    <form id="formContenido" class="text-center" action="php/functions/perfil.php" method="post">
                         <div class="input-group flex-column flex-nowrap w-75 mx-auto">
                             <label>Usuario</label>
-                            <input type="text" class="form-control" value="<?php echo $username["username"];?>" name="User" aria-describedby="addon-wrapping" autocomplete="off">
+                            <input type="text" class="form-control" value="<?php echo $row["username"];?>" name="User" aria-describedby="addon-wrapping" autocomplete="off">
                         </div>
                         <div class="input-group flex-column flex-nowrap w-75 mx-auto">
                             <label class="espacio">Nombre</label>
@@ -128,7 +64,7 @@
                     </form>
                 </section>
                 <section id="PyS" class="vanish">
-                    <form action="Perfil.php" method="post">
+                    <form action="php/functions/perfil.php" method="post">
                         <h2 class="espacio">Cambiar contraseña</h2>
                         <button type="button" onclick="alertChangePassword(getCookie('login'))" class="btn btn-danger">Cambiar contraseña</button>
                         <h2 class="espacio">Eliminar cuenta</h2>
@@ -140,18 +76,12 @@
             </div>
         </section>
     </center>
-    <script>
-        if (getCookie("login")==null) {
-            location.href = "index.php";
-        }
-    </script>
-    <script src="Scripts/gestionarContrasenias.js"></script>
-    <script src="Scripts/alerts.js"></script>
-    <script src="Scripts/clickGestPass.js"></script>
-    <script src="Scripts/passGenerator.js"></script>
-    <footer style="background-color:#2244;">
-    <?php require "fotter/footer.php"; ?>
+    <footer id="footerPerfil">
+        <?php include "php/presetHTML/footer.php"; ?>
     </footer>
-
+    <script src="js/alerts.js"></script>
+    <script src="js/globalFunctions.js"></script>
+    <script src="libraries/vex/vex.js"></script>
+    <script src="libraries/vex/vex.combined.min.js"></script>
 </body>
 </html>
