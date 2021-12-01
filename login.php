@@ -16,8 +16,8 @@
 <body onload='alerts("login")'>
   <section id="LogIn" style="height: auto; padding-bottom: 1em;">
     <div id='errorAlert' class='vanish'></div>
-    <div id="LogIn_div">
-      <h2 style="margin-top: 1.75em;" id="tituloLogIn">Loguearte</h2>
+    <div id="LogIn_div" style="padding-bottom: 1em;">
+      <h2 style="margin-top: 1em;" id="tituloLogIn">Loguearte</h2>
       <form action="php/functions/login.php" method="post">
         <input type="email" name="email" placeholder="E-Mail..." value="<?php if(isset($_COOKIE['tempEmail'])) echo $_COOKIE['tempEmail'];?>" class="login-input form-control" required><br>
         <div class="d-flex">

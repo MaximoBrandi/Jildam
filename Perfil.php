@@ -12,6 +12,12 @@
     if($row['pfp'] == ''){
         $image = 'img/circled-user-icon.svg';
     }
+    else if($row['pfp'] != ''){
+        $image = $row['pfp'];
+    }
+    else{
+        $image = 'img/circled-user-icon.svg';
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">

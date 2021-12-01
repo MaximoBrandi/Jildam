@@ -1,5 +1,5 @@
 // General
-
+var cantidadcopia = 0;
   
   /* Modificar Cookie */
 
@@ -243,7 +243,13 @@
       let selectText = document.getElementById(passCamp);
       if(selectText.type === 'password'){selectText.type = 'text';selectText.select();document.execCommand('copy');window.getSelection().removeAllRanges();selectText.type = 'password';}
       else{selectText.select();document.execCommand('copy');window.getSelection().removeAllRanges()}
-      alertify.notify('Copiado al portapapeles', 'success', 3, function(){});
+      if (cantidadcopia < 5) {
+        alertify.notify('Copiado al portapapeles', 'success', 3, function(){});
+      }else{
+        alertify.dismissAll()
+        cantidadcopia = 0;
+      }
+      cantidadcopia++;
     }
 
   /* Para ver las contraseñas en register.php */
@@ -263,6 +269,9 @@
 
   /* Para generar una contraseña al momento de registrarse */
     function generatePassMultipleInputs(){
+      document.getElementById("alertgenerate").classList.remove('vanish');
+      document.getElementById("loginregister").classList.add('vanish');
+      document.getElementById("message").classList.add('vanish');
       let inputs = document.querySelectorAll(".inputPasswordRegister");
       let caracteresRandomPass = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","U","V","W","X","Y","Z",1,2,3,4,5,6,7,8,9,0,"-","_"];
       let passGenerada = '';
@@ -272,6 +281,7 @@
         }
       inputs.forEach(e => {
           e.value = passGenerada;
+          e.type = 'text';
       });
       if(location.href.includes('register.php')) document.getElementById('boton_repiola').removeAttribute('disabled');
     }
@@ -320,3 +330,17 @@
         location.reload();
       }
     }
+
+/* Tooltip */
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+});
+
+document.querySelector(".tooltipButton-characters").addEventListener("click",()=>{
+    Swal.fire({
+      icon: 'info',
+      title: 'ATENCIÓN',
+      text: 'En los campos de nombre de usuario y contraseña solo se encuentra permitido el ingreso de caracteres alfanuméricos y guiones. Nada de espacios, caracteres especiales ("#", "%", "$", etc...) ni tildes. Máximo de 50 caracteres.',
+    });
+})

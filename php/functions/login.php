@@ -5,6 +5,12 @@ require_once "conexion.php";
 error_reporting(0);
 
 if (isset($_POST["contrasena"]) && isset($_POST["email"])){
+  if($_POST["contrasena"] == '' || $_POST["email"] == ''){
+    setcookie("loginError", "Complete los campos", time() + 10, "/");
+    setcookie("tempEmail", $emaila , time() + 10, "/");
+    header('Location: ../../login.php');
+    exit();
+  }
     $contrasenac = $_POST["contrasena"];
     $emailc = $_POST["email"];
     $contrasena = strip_tags($contrasenac);
@@ -25,8 +31,8 @@ if (isset($emaila) && isset($contrasena)) {
     
       session_start();
       $_SESSION["Login"] = $user_id;
-      setcookie("login", $user_id, time() + (86400 * 30), "/");
-      setcookie("username", $usernamecrud, time() + (86400 * 30), "/");
+      setcookie("login", $user_id, time() + 1800, "/");
+      setcookie("username", $usernamecrud, time() + 1800, "/");
     }
     else if($contrasena != $row["password"] && $emaila == $row["email"]){
       setcookie("loginError", "Correo o contraseña incorrectos", time() + 10, "/");

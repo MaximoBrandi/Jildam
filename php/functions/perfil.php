@@ -27,6 +27,10 @@
         $pass = mysqli_fetch_assoc($result);
 
         if (isset($_POST["actu"]) && isset($_POST["nue1"]) && isset($_POST["nue2"])) {
+            if(($_POST["actu"] == '' || $_POST["actu"] == null) || ($_POST["nue1"] == '' || $_POST["nue1"] == null) || ($_POST["nue2"] || $_POST["nue2"] == null)){
+                setcookie("profileError", "Campos incompletos", time()+10, "/");
+                setcookie("operationRes", "error", time()+10, "/");
+            }
             $passactu = md5($_POST["actu"]);
             if ($pass["password"] == $passactu) {
                 if ($_POST["nue1"] == $_POST["nue2"]) {

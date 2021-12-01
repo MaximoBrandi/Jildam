@@ -100,8 +100,8 @@ function alertAddPass(){
         className: 'vex-theme-default',
         input: [
             '<form action="php/functions/passwordsActions.php" method="post">',
-            '<input type="text" name="webADD" placeholder="Sitio web..." />',
-            '<input name="userADD" type="text" placeholder="Nombre de usuario/email..." required />',
+            '<input type="text" name="webADD" placeholder="Sitio web(Opcional) Ej: www.google.com" />',
+            '<input name="userADD" type="text" placeholder="Nombre | Usuario/Email" required />',
             '<div>',
                 '<input name="passADD" id="input-passGenerada" type="password" placeholder="Contraseña..." required />',
                 '<button type="button" onclick="showPasswordInput()" class="vex-dialog-button vex-first btn-verPassInput" title="Mostrar"></button>',
@@ -175,8 +175,8 @@ function alertEditPass(id, web, username, password){
         input: [
             '<form action="php/functions/passwordsActions.php" method="post">',
             `<input type="hidden" name="id" id="idCampo" value=${id}>`,
-            `<input type="text" name="webEDIT" placeholder="Sitio web..." value=${web}>`,
-            `<input type="text" name="userEDIT" placeholder="Nombre de usuario/email..." value=${username} required>`,
+            `<input type="text" name="webEDIT" placeholder="Sitio web(Opcional) Ej: www.google.com" value=${web}>`,
+            `<input type="text" name="userEDIT" placeholder="Nombre | Usuario/Email" value=${username} required>`,
             '<div>',
             `<input name="passEDIT" id="input-passGenerada" type="password" placeholder="Contraseña..." value=${password} required />`,
                 '<button type="button" onclick="showPasswordInput()" class="vex-dialog-button vex-first btn-verPassInput" title="Mostrar"></button>',

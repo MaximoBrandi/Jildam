@@ -96,6 +96,22 @@ body{
 
 
 
+/* Error BD */
+.secErrorBD{
+    height: unset;
+    padding-bottom: 5em;
+}
+#IconErrorBD{
+    padding-top: 2em;
+    margin: 0 auto;
+    width: 30%;
+}
+
+
+
+
+
+
 
 /* NAVBAR */
 .navbar{
@@ -253,10 +269,6 @@ body{
 
 
 
-
-
-
-
 /* -------------------- */
 /* LOGIN Y REGISTER */
 /* -------------------- */
@@ -382,6 +394,28 @@ body{
     display: flex;
     text-align: center;
   }
+  .tooltipButton-characters{
+    position: fixed;
+    bottom: 5;
+    right: 5%;
+    width: 5em;
+    height: 5em;
+    background-color: transparent;
+    border: none;
+    background-image: url('../img/help-circle.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    filter: var(--svg-color);
+  }
+  .tooltipButton-characters:hover{
+    filter: invert(24%) sepia(70%) saturate(4256%) hue-rotate(212deg) brightness(103%) contrast(105%);
+    transition: filter 0.3s;
+  }
+  .tooltipButton-characters:not(:hover){
+    filter: var(--svg-color);
+    transition: 0.3s;
+  }
   @media screen and (max-width: 1200px) {
     section#LogIn{
       width: 70%;
@@ -404,6 +438,7 @@ body{
       font-size: 1.35em;
       color: #c5807f;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
+      text-align: center;
   }
 
 
@@ -596,6 +631,35 @@ section#gestionarPass{
 }
 #gestionarPass hr{
     color: var(--text-primary-color);
+}
+.buscador-container{
+    display:flex;
+    width: 80%;
+    margin: 0 auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 1.5em;
+}
+.inputSearch-container{
+    width: 15em;
+    justify-content: center;
+    text-align: center;
+}
+.inputSearch{
+    border-radius: 0.25em;
+    width: 100%;
+    height: 2em;
+    text-align: center;
+}
+.searchButton-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10em;
+}
+.searchButton{
+    width: 100%;
 }
 table{
     width: 80%;
@@ -802,7 +866,7 @@ table th, td{
 #seccionOpciones{
     display: flex;
     flex-direction: row;
-    height: 100vh;
+    height: auto;
 }
 #navPerfil {
     display: flex;
@@ -949,6 +1013,7 @@ table th, td{
 /* footer de perfil.php */
 #footerPerfil{
     margin-top: -3em;
+    z-index: -1;
 }
 /* ---------------------- */
 /* ------RESPONSIVE------ */
@@ -967,6 +1032,12 @@ table th, td{
 @media (max-width: 1024px) {
     html {
         font-size: 14px;
+    }
+    .buscador-container{
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 15em;
     }
 }
 @media (max-width: 992px){
@@ -1053,9 +1124,6 @@ table th, td{
     }
     #table-accounts th{
         padding: 1em;
-    }
-    #footerPerfil{
-        margin-top: 8em;
     }
 }
 @media (max-width: 500px) {

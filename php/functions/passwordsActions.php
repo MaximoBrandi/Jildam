@@ -2,7 +2,12 @@
     require_once "conexion.php";
     /* Agregar contraseñas */
     if (isset($_POST["userADD"]) && isset($_POST["passADD"])){
-
+    if(trim($_POST["userADD"]) == '' || trim($_POST["passADD"]) == ''){
+        setcookie("managePassRes", "Campos incompletos", time()+10,"/");
+        setcookie("operationRes", "error", time()+10, "/");
+        header('Location: ../../gestionarContrasenias.php');
+        exit('Campos incompletos.');
+    }
         if(isset($_POST["webADD"])){
             if($_POST["webADD"] != '' && $_POST["webADD"] != null){
                 if (validateURL($_POST["webADD"])) $sub_web = strip_tags($_POST["webADD"]);
@@ -24,13 +29,19 @@
         $user = strip_tags($sub_user);
         $pass = strip_tags($sub_pass);
 
-        $consulta = "INSERT INTO `accounts` VALUES (null,'" . $_SESSION["Login"] . "','" . $web . "','" . $user . "','" . $pass . "', null)";
+        $consulta = "INSERT INTO `accounts` VALUES (null,'" . $_SESSION["Login"] . "','" . $conn->real_escape_string($web) . "','" . $conn->real_escape_string($user) . "','" . $conn->real_escape_string($pass) . "', null)";
         $result = consulta($conn, $consulta);
     }
     /* Editar contraseñas */
     if (isset($_POST["id"]) && isset($_POST["userEDIT"]) && isset($_POST["passEDIT"])){
+        if(trim($_POST["userEDIT"]) == '' || trim($_POST["passEDIT"]) == ''){
+            setcookie("managePassRes", "Campos incompletos", time()+10,"/");
+            setcookie("operationRes", "error", time()+10, "/");
+            header('Location: ../../gestionarContrasenias.php');
+            exit('Campos incompletos.');
+        }
         $id = $_POST["id"];
-        $consulta = "SELECT `user_id` FROM `accounts` WHERE `id` = " . $id;
+        $consulta = "SELECT `user_id` FROM `accounts` WHERE `id` = " . $conn->real_escape_string($id);
         $result = consulta($conn, $consulta);
         $row = mysqli_fetch_assoc($result);
         if($row['user_id'] === $_SESSION["Login"]){
@@ -55,7 +66,7 @@
             $user = strip_tags($sub_user);
             $pass = strip_tags($sub_pass);
 
-            $consulta = "UPDATE `accounts` SET `web`='" . $web . "',`username`='" . $user . "',`password`='" . $pass . "' WHERE `id` = " . $id;
+            $consulta = "UPDATE `accounts` SET `web`='" . $conn->real_escape_string($web) . "',`username`='" . $conn->real_escape_string($user) . "',`password`='" . $conn->real_escape_string($pass) . "' WHERE `id` = " . $conn->real_escape_string($id);
             $result = consulta($conn, $consulta);
         }
         else{
@@ -68,11 +79,11 @@
     /* Eliminar contraseñas */
     if (isset($_GET["idCampo__Delete"])){
         $id = $_GET["idCampo__Delete"];
-        $consulta = "SELECT `user_id` FROM `accounts` WHERE `id` = " . $id;
+        $consulta = "SELECT `user_id` FROM `accounts` WHERE `id` = " . $conn->real_escape_string($id);
         $result = consulta($conn, $consulta);
         $row = mysqli_fetch_assoc($result);
         if($row['user_id'] === $_SESSION["Login"]){
-            $consulta = "UPDATE `accounts` SET `deleted`=NOW() WHERE `id` = " . $id;
+            $consulta = "UPDATE `accounts` SET `deleted`=NOW() WHERE `id` = " . $conn->real_escape_string($id);
             $result = consulta($conn, $consulta);
         }
         else{
@@ -86,7 +97,7 @@
     if (isset($_POST["pswrdDelAccountsConfirm"])) {
         $delAccountsConfirm = $_POST["pswrdDelAccountsConfirm"];
         $id = $_SESSION["Login"];
-        $sql = "SELECT password FROM users WHERE id = ".$id." AND deleted is NULL";
+        $sql = "SELECT password FROM users WHERE id = ".$conn->real_escape_string($id)." AND deleted is NULL";
         $res = consulta($conn, $sql);
         $userPassword = mysqli_fetch_assoc($res);
         if(md5($delAccountsConfirm) == $userPassword['password']){

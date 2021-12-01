@@ -3,8 +3,9 @@
     include "php/functions/checkSession.php";
     checkSession(0);
     include "php/presetHTML/menu.php";
-
-    $consulta = "SELECT `id`, `user_id`, `web`, `username`, `password`, `deleted` FROM `accounts` WHERE `user_id` = " . $_SESSION["Login"] . " AND deleted is NULL";
+    $_POST['webSEARCH'] = (isset($_POST['webSEARCH'])) ? strip_tags($_POST['webSEARCH']) : "";
+    $_POST['userSEARCH'] = (isset($_POST['userSEARCH'])) ? strip_tags($_POST['userSEARCH']) : "";
+    $consulta = "SELECT `id`, `user_id`, `web`, `username`, `password`, `deleted` FROM `accounts` WHERE `user_id` = " . $_SESSION["Login"] . " AND deleted is NULL AND `web` LIKE '%".$conn->real_escape_string($_POST['webSEARCH'])."%' AND `username` LIKE '%".$conn->real_escape_string($_POST['userSEARCH'])."%'";
     $result = consulta($conn, $consulta);
 ?>
 <!DOCTYPE html>
@@ -30,11 +31,25 @@
     <section id="gestionarPass">
         <h2>Gestionar contraseñas</h2>
         <hr><br><br>
+        <h3 class="text-start">Buscar contraseñas</h3>
+        <form action="gestionarContrasenias.php"  method="post">
+        <div class="buscador-container text-center">
+            <div class="inputSearch-container">
+                <input type="text" class="inputSearch" value="<?php echo $_POST['webSEARCH'] ?>" name="webSEARCH" placeholder="Sitio web..." autocomplete="off">
+            </div>
+            <div class="inputSearch-container">
+                <input type="text" class="inputSearch" value="<?php echo $_POST['userSEARCH'] ?>" name="userSEARCH" placeholder="Nombre/email..." autocomplete="off">
+            </div>
+            <div class="searchButton-container">
+                <button type="submit" class="btn btn-primary searchButton">Buscar</button>
+            </div>
+        </div>
+        </form>
         <table class="table-accounts mx-auto" id="table-accounts">
             <thead id="table-head">
                 <tr style="border-top: none;">
                     <th align="center" style="border-top-left-radius: inherit;">Sitio</th>
-                    <th align="center">Usuario</th>
+                    <th align="center">Nombre</th>
                     <th align="center">Contraseña</th>
                     <th align="center" colspan="3" style="border-top-right-radius: inherit;">Opciones</th>
                 </tr>
@@ -46,7 +61,7 @@
                 ?>
                 
                 <tr>
-                    <td><?php echo $fila["web"];?></td>
+                    <td> <a target="_blank" href="http://<?php echo $fila["web"];?>"><?php echo $fila["web"];?></a></td>
                     <td align="center"><?php echo $fila["username"];?></td>
                     <td align="center">
                         <input type="password" class="td-password" id="pass<?php echo $fila['id'];?>" value="<?php echo $fila['password'] ?>" readonly>
