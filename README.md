@@ -1,2 +1,0 @@
-# Jildam
-Password administrating service 
