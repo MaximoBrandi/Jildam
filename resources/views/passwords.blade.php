@@ -26,14 +26,11 @@
         <h2>Gestionar contraseñas</h2>
         <hr><br><br>
         <h3 class="text-start">Buscar contraseñas</h3>
-        <form action="{{ route('passwords') }}"  method="get">
+        <form action="{{ route('search') }}"  method="post">
             @csrf
             <div class="buscador-container text-center">
                 <div class="inputSearch-container">
-                    <input type="text" class="inputSearch" value="@if(isset($GetData['webSEARCH'])){{$GetData['webSEARCH']}}@endif" name="webSEARCH" placeholder="Sitio web..." autocomplete="off">
-                </div>
-                <div class="inputSearch-container">
-                    <input type="text" class="inputSearch" value="@if(isset($GetData['userSEARCH'])){{$GetData['userSEARCH']}}@endif" name="userSEARCH" placeholder="Nombre/email..." autocomplete="off">
+                    <input type="text" class="inputSearch" value="@if(isset($search)){{$search}}@endif" name="search" placeholder="Buscar" autocomplete="off">
                 </div>
                 <div class="searchButton-container">
                     <button type="submit" class="btn btn-primary searchButton">Buscar</button>
@@ -85,6 +82,13 @@
                         </tr>
                     @endforeach
                 @endisset
+
+                <!-- Authentication Status -->
+                <x-auth-session-status class="mb-4" :status="session('status')" />
+
+                <!-- Validation Errors -->
+                <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
                 <tr id="filaAddPass" style="border-bottom-left-radius: inherit;border-bottom-right-radius: inherit;">
                     <td align="center" colspan="6" id="Agregar"><button onclick="alertAddPass('{{ csrf_token() }}')" class="btn-addPass">+ Añadir</button></td>
                 </tr>
@@ -92,11 +96,7 @@
         </table>
     </section>
 
-        <!-- Authentication Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <!-- Validation Errors -->
-    <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
 @endsection
 

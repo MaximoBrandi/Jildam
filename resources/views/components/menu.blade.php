@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <a class="navbar-brand align-middle d-flex logo-container">
                 <button onclick="window.location.href = '{{ route('index') }}'" formaction='index.php' class="btn-inicio" title="Inicio"></button>
-                <p class="mt-auto">Jildam Secure</p>
+                <p class="mt-auto">Jildam</p>
         </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

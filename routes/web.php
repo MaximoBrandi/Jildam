@@ -24,7 +24,19 @@ Route::controller(RoutesController::class)->group(function () {
 
     Route::post('/passwords', 'insert')->middleware('auth')->name('insert');
 
+    Route::post('/search', 'search')->middleware('auth')->name('search');
+
+    Route::get('/search', 'passwords')->middleware('auth');
+
     Route::get('/profile', 'profile')->middleware('auth')->name('profile');
+
+    Route::post('/profile', 'update')->middleware('auth')->name('update');
+
+    Route::post('/passwordreset', 'passwordreset')->middleware('auth')->name('passwordreset');
+
+    Route::post('/resetpasswords', 'resetpasswords')->middleware('auth')->name('resetpasswords');
+
+    Route::post('/deleteaccount', 'deleteaccount')->middleware('auth')->name('deleteaccount');
 });
 
 
