@@ -10,12 +10,12 @@
             <form>
                 <div id="logInSec" class="LogedOut__Div">
                     <label>Puede ingresar a su cuenta</label>
-                    <button type="button" class="btn btn-primary" id="boton" onclick="location.href='login.php'">Ingresar</button>
+                    <button type="button" class="btn btn-primary" id="boton" onclick="location.href='{{ route('login') }}'">Ingresar</button>
                 </div>
 
                 <div id="registerSec" class="LogedOut__Div">
                     <label>Puede crear una cuenta</label>
-                    <button type="button" class="btn btn-primary" id="boton" onclick="location.href='register.php'">Registrarse</button>
+                    <button type="button" class="btn btn-primary" id="boton" onclick="location.href='{{ route('register') }}'">Registrarse</button>
                 </div>
             </form>
         </div>

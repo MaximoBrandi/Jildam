@@ -17,7 +17,16 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/main';
+
+    /**
+     * The path to the "passwords" route for your application.
+     *
+     * This is used by Laravel authentication to redirect users after creating or uploading a new password.
+     *
+     * @var string
+     */
+    public const PASSWORDS = '/passwords';
 
     /**
      * The controller namespace for the application.

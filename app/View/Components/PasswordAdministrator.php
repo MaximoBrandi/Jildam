@@ -15,7 +15,7 @@ class PasswordAdministrator extends Component
      *
      * @return void
      */
-    public function __construct($PostData, $Passwords)
+    public function __construct($PostData = null, $Passwords = null)
     {
         $this->Passwords = $Passwords;
         $this->PostData = $PostData;

@@ -1,20 +1,21 @@
 vex.dialog.buttons.YES.text = 'Aceptar';
 vex.dialog.buttons.NO.text = 'Cancelar';
 
-function alertDeletePass(id){
-    vex.dialog.confirm({
+function alertDeletePass(id, token){
+    vex.dialog.open({
         message: '¿Estás seguro de que quieres eliminar esta contraseña? Esta acción es irreversible.',
         className: 'vex-theme-default',
         input: [
-            `<button type="submit" class="vex-dialog-button-primary vex-dialog-button vex-first" onclick="window.location.href='php/functions/passwordsActions.php?idCampo__Delete=${id}'">Confirmar</button>`,
-            '<button type="button" class="vex-dialog-button-secondary vex-dialog-button vex-last" onclick="vex.closeAll()">Cancelar</button>'
+            '<form action="/passwords" method="post">',
+            `<input type="hidden" name="_token" value="${token}" />`,
+            `<input type="hidden" name="delete" value="${id}" />`,
+            '<button type="submit" class="vex-dialog-button-primary vex-dialog-button vex-first">Aceptar</button>',
+            '<button type="button" onclick="vex.closeAll()" class="vex-dialog-button-secondary vex-dialog-button vex-last">Cancelar</button>',
+            '</form>'
         ].join(''),
         buttons: [],
-        callback: function (value) {
-            if(value == true){
-                window.location.href = `web/php/passwordsActions.php?idCampo__Delete=${id}`;
-            }
-        }
+        showCloseButton: false,
+        callback: function (data) {}
     })
 }
 
@@ -94,16 +95,17 @@ function alertDeletePasswordsConfirm(){
     })
 }
 
-function alertAddPass(){
+function alertAddPass(token){
     vex.dialog.open({
         message: 'Completa los campos para agregar una contraseña:',
         className: 'vex-theme-default',
         input: [
-            '<form action="php/functions/passwordsActions.php" method="post">',
-            '<input type="text" name="webADD" placeholder="Sitio web(Opcional) Ej: www.google.com" />',
-            '<input name="userADD" type="text" placeholder="Nombre | Usuario/Email" required />',
+            '<form action="/passwords" method="post">',
+            `<input type="hidden" name="_token" value="${token}" />`,
+            '<input type="text" name="web" placeholder="Sitio web(Opcional) Ej: www.google.com" />',
+            '<input name="name" type="text" placeholder="Nombre | Usuario/Email" required />',
             '<div>',
-                '<input name="passADD" id="input-passGenerada" type="password" placeholder="Contraseña..." required />',
+                '<input name="password" id="input-passGenerada" type="password" placeholder="Contraseña..." required />',
                 '<button type="button" onclick="showPasswordInput()" class="vex-dialog-button vex-first btn-verPassInput" title="Mostrar"></button>',
                 '<button type="button" onclick="createPassword()" class="vex-dialog-button vex-first btn-generarPass" title="Generar contraseña"></button>',
             '</div>',
@@ -168,17 +170,18 @@ function alertChangePassword(){
     });
 }
 
-function alertEditPass(id, web, username, password){
+function alertEditPass(id, token, web, username, password){
     vex.dialog.open({
         message: 'Edita los campos para actualizar la información:',
         className: 'vex-theme-default',
         input: [
-            '<form action="php/functions/passwordsActions.php" method="post">',
+            '<form action="/passwords" method="post">',
+            `<input type="hidden" name="_token" value="${token}" />`,
             `<input type="hidden" name="id" id="idCampo" value=${id}>`,
-            `<input type="text" name="webEDIT" placeholder="Sitio web(Opcional) Ej: www.google.com" value=${web}>`,
-            `<input type="text" name="userEDIT" placeholder="Nombre | Usuario/Email" value=${username} required>`,
+            `<input type="text" name="web" placeholder="Sitio web(Opcional) Ej: www.google.com" value=${web}>`,
+            `<input type="text" name="name" placeholder="Nombre | Usuario/Email" value=${username} required>`,
             '<div>',
-            `<input name="passEDIT" id="input-passGenerada" type="password" placeholder="Contraseña..." value=${password} required />`,
+            `<input name="password" id="input-passGenerada" type="password" placeholder="Contraseña..." value=${password} required />`,
                 '<button type="button" onclick="showPasswordInput()" class="vex-dialog-button vex-first btn-verPassInput" title="Mostrar"></button>',
                 '<button type="button" onclick="createPassword()" class="vex-dialog-button vex-first btn-generarPass" title="Generar contraseña"></button>',
             '</div>',

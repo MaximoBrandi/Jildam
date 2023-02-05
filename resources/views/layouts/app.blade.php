@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 ?>
 
@@ -28,9 +30,12 @@ use Illuminate\Support\Facades\Auth;
 
         @yield('body', '')
 
-        <footer id="@yield('footerId', '')" class="@yield('footerClass', '')" style="@yield('footerStyle', '')">
-            <x-footer/>
-        </footer>
+        @unless (Route::currentRouteName() == 'main')
+            <footer id="@yield('footerId', '')" class="@yield('footerClass', '')" style="@yield('footerStyle', '')">
+                <x-footer/>
+            </footer>
+        @endunless
+
         <script src="assets/js/theme.js"></script>
         <script src="assets/js/globalFunctions.js"></script>
     </body>

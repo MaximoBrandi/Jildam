@@ -15,11 +15,12 @@ class CreateAccountsTable extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->boolean('web')->nullable();
+            $table->integer('user_id');
+            $table->string('web')->nullable();
             $table->string('name');
             $table->string('password');
             $table->timestamps();
+            $table->softdeletes();
         });
     }
 

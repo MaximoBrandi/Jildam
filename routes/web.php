@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutesController;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +15,17 @@ use App\Http\Controllers\RoutesController;
 |
 */
 
+Route::controller(RoutesController::class)->group(function () {
+    Route::get('/', 'index')->middleware('guest')->name('index');
 
-Route::controller(RoutesController::class)->group(function(){
+    Route::get('/main', 'main')->middleware('auth')->name('main');
 
-    Route::get('/', 'index')->name('index');
+    Route::get('/passwords', 'passwords')->middleware('auth')->name('passwords');
 
-    Route::get('/login', 'login')->name('login');
+    Route::post('/passwords', 'insert')->middleware('auth')->name('insert');
 
-    Route::get('/register', 'register')->name('register');
-
+    Route::get('/profile', 'profile')->middleware('auth')->name('profile');
 });
+
+
+require __DIR__.'/auth.php';

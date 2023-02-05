@@ -132,6 +132,19 @@ class Password implements Rule, DataAwareRule, ValidatorAwareRule
         static::$defaultCallback = $callback;
     }
 
+    public static function insert($callback = null)
+    {
+        if (is_null($callback)) {
+            return static::default();
+        }
+
+        if (! is_callable($callback) && ! $callback instanceof static) {
+            throw new InvalidArgumentException('The given callback should be callable or an instance of '.static::class);
+        }
+
+        static::$defaultCallback = $callback;
+    }
+
     /**
      * Get the default configuration of the password rule.
      *

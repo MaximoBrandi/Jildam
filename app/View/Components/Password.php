@@ -6,15 +6,15 @@ use Illuminate\View\Component;
 
 class Password extends Component
 {
-    public $PasswordData;
+    public $Password_Data;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($PasswordData)
+    public function __construct($data)
     {
-        $this->PasswordData = $PasswordData;
+        $this->Password_Data = $data;
     }
 
     /**
