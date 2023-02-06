@@ -31,7 +31,7 @@
 <br />
 <div align="center">
   <a target="_blank" href="https://github.com/maximobrandi/jildam">
-    <img src="assets/img/jildam_icon.svg" alt="Logo" width="80" height="80">
+    <img src="assets/img/jildam_icon.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Jildam</h3>
@@ -68,8 +68,6 @@
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -78,7 +76,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://jildam.bitlink.com.ar)
+[![Product Name Screen Shot][product-screenshot]](assets/img/jildam_example.png)
 
 Jildam is a password management application with a focus on customizing the user experience. In addition to allowing you to manage and generate passwords securely, it also offers the possibility of customizing your profile with information such as your name, surname, biography, and profile picture, like in a forum.
 
