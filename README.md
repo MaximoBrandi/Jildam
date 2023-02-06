@@ -31,7 +31,7 @@
 <br />
 <div align="center">
   <a target="_blank" href="https://github.com/maximobrandi/jildam">
-    <img src="https://github.com/MaximoBrandi/Jildam/blob/Testing/public/assets/img/jildam_icon.png" alt="Logo" width="80" height="80">
+    <img src="https://github.com/MaximoBrandi/Jildam/blob/main/public/assets/img/jildam_icon.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Jildam</h3>
@@ -189,7 +189,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [license-url]: https://github.com/maximobrandi/jildam/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/m%C3%A1ximo-prandi/
-[product-screenshot]: https://github.com/MaximoBrandi/Jildam/blob/Testing/public/assets/img/jildam_example.png
+[product-screenshot]: https://github.com/MaximoBrandi/Jildam/blob/main/public/assets/img/jildam_example.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
