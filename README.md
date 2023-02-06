@@ -76,7 +76,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://github.com/MaximoBrandi/Jildam/blob/Testing/public/assets/img/jildam_example.png)
+[![Product Name Screen Shot][product-screenshot]](https://jildam.bitlink.com.ar)
 
 Jildam is a password management application with a focus on customizing the user experience. In addition to allowing you to manage and generate passwords securely, it also offers the possibility of customizing your profile with information such as your name, surname, biography, and profile picture, like in a forum.
 
@@ -189,7 +189,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [license-url]: https://github.com/maximobrandi/jildam/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/m%C3%A1ximo-prandi/
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: https://github.com/MaximoBrandi/Jildam/blob/Testing/public/assets/img/jildam_example.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
