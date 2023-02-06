@@ -30,7 +30,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/maximobrandi/jildam">
+  <a target="_blank" href="https://github.com/maximobrandi/jildam">
     <img src="assets/img/jildam_icon.svg" alt="Logo" width="80" height="80">
   </a>
 
@@ -39,7 +39,7 @@
   <p align="center">
     Password manager and generator web aplication
     <br />
-    <a href="https://jildam.bitlink.com.ar">View Demo</a>
+    <a target="_blank" href="https://jildam.bitlink.com.ar">View Demo</a>
     ·
     <a href="https://github.com/maximobrandi/jildam/issues">Report Bug</a>
     ·
