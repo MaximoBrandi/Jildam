@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('stylesheets', '<link rel="stylesheet" href="assets/vendor/sweetalert2/sweetalert2.min.css">')
-
-@section('scripts', '<script src="assets/vendor/sweetalert2/sweetalert2.all.min.js"></script>')
-
 @section('bodyOnLoad', 'alerts("register")')
 
 @section('bodyStyle', 'padding-bottom:3em;')
