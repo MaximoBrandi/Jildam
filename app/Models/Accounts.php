@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
+use Illuminate\Support\Facades\Crypt;
 
 class Accounts extends Model
 {
@@ -16,6 +17,10 @@ class Accounts extends Model
         'web',
         'name',
         'password',
+    ];
+
+    public $casts = [
+        'password' => 'encrypted'
     ];
 
 }

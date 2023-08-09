@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="assets/vendor/alertify/alertify-theme-default.min.css"/>
 @endsection
 
-
-
 @section('bodyOnLoad', 'inicioEvent()')
 
 @section('body')

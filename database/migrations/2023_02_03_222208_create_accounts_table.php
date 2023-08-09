@@ -18,7 +18,7 @@ class CreateAccountsTable extends Migration
             $table->integer('user_id');
             $table->string('web')->nullable();
             $table->string('name');
-            $table->string('password');
+            $table->text('password');
             $table->timestamps();
             $table->softdeletes();
         });

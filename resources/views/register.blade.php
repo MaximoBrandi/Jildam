@@ -26,6 +26,8 @@
                 </div>
                 <div class="" id='message'></div>
                 <a id="loginregister" class="" href="{{ route('login') }}">¿Tienes una cuenta? ¡Inicia sesión!</a>
+                <span style="margin-top:1rem;"><input type="checkbox" name="terms" id="terms" > Acepto los <a target="_blank" href="/terms">terminos y condiciones</a></span>
+                {!! HCaptcha::display() !!}
                 <button type="submit" onclick="isTheSame()" class="btn btn-primary" id="boton_repiola" style="background-color: #f85d09; margin-bottom: 2em;">Aceptar</button>
             </form>
         </div>
@@ -34,5 +36,7 @@
 
     <!-- Validation Errors -->
     <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+    {!! HCaptcha::script() !!}
 
 @endsection

@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/terms', function () {
+    return view('terms');
+});
+
 Route::controller(RoutesController::class)->group(function () {
     Route::get('/', 'index')->middleware('guest')->name('index');
 

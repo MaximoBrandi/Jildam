@@ -37,6 +37,7 @@ class PasswordsController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'web' => ['required', 'string', 'url', 'max:255'],
             'password' => ['required', Rules\Password::defaults()],
+            'terms' => ['true'],
         ]);
 
         if ($validate) {
